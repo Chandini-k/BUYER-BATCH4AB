@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "YPSfpzRGsnbiuZKl7REZx4Ijw9che3b2v0TgC3m4wZpUFx/8dLG/9/wRmcnpdl+Hatk2JfzK4TvhVGZljd608w==",
+  "dgSpecHash": "g5/dAKY7EJc7PHNXkxjGiMIkB8onmAlMCtvyhoY+Ra6i9VoT2eQ4hlHw5mpItbJDxhglMTwUDUoOp8KvAXvf1g==",
   "success": true,
-  "projectFilePath": "C:\\BUYERPROJECT\\Solutions\\ItemServiceTesting\\ItemServiceTesting.csproj",
+  "projectFilePath": "C:\\BUYERPROJECT\\ItemServiceTesting\\ItemServiceTesting.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Administrator\\.nuget\\packages\\castle.core\\4.4.0\\castle.core.4.4.0.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.aspnetcore.antiforgery\\2.2.0\\microsoft.aspnetcore.antiforgery.2.2.0.nupkg.sha512",

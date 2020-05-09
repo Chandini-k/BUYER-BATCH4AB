@@ -20,8 +20,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\BUYERDBENTITY\BUYERDBENTITY.csproj" />
-    <ProjectReference Include="..\..\ItemsService\ItemsService\ItemsService.csproj" />
+    <ProjectReference Include="..\BUYERDBENTITY\BUYERDBENTITY.csproj" />
+    <ProjectReference Include="..\ItemsService\ItemsService\ItemsService.csproj" />
   </ItemGroup>
 
 </Project>

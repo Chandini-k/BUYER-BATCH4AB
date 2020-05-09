@@ -20,6 +20,8 @@ namespace BUYERDBENTITY.Entity
         public int? Stockno { get; set; }
         public string Remarks { get; set; }
         public string Imagename { get; set; }
+        public string Categoryname { get; set; }
+        public string Subcategoryname { get; set; }
 
         public virtual Category Category { get; set; }
         public virtual SubCategory Subcategory { get; set; }

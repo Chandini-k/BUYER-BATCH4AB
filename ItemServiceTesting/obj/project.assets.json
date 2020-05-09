@@ -10038,13 +10038,13 @@
     },
     "BUYERDBENTITY/1.0.0": {
       "type": "project",
-      "path": "../../BUYERDBENTITY/BUYERDBENTITY.csproj",
-      "msbuildProject": "../../BUYERDBENTITY/BUYERDBENTITY.csproj"
+      "path": "../BUYERDBENTITY/BUYERDBENTITY.csproj",
+      "msbuildProject": "../BUYERDBENTITY/BUYERDBENTITY.csproj"
     },
     "ItemsService/1.0.0": {
       "type": "project",
-      "path": "../../ItemsService/ItemsService/ItemsService.csproj",
-      "msbuildProject": "../../ItemsService/ItemsService/ItemsService.csproj"
+      "path": "../ItemsService/ItemsService/ItemsService.csproj",
+      "msbuildProject": "../ItemsService/ItemsService/ItemsService.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -10067,11 +10067,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\BUYERPROJECT\\Solutions\\ItemServiceTesting\\ItemServiceTesting.csproj",
+      "projectUniqueName": "C:\\BUYERPROJECT\\ItemServiceTesting\\ItemServiceTesting.csproj",
       "projectName": "ItemServiceTesting",
-      "projectPath": "C:\\BUYERPROJECT\\Solutions\\ItemServiceTesting\\ItemServiceTesting.csproj",
+      "projectPath": "C:\\BUYERPROJECT\\ItemServiceTesting\\ItemServiceTesting.csproj",
       "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-      "outputPath": "C:\\BUYERPROJECT\\Solutions\\ItemServiceTesting\\obj\\",
+      "outputPath": "C:\\BUYERPROJECT\\ItemServiceTesting\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

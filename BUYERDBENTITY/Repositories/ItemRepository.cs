@@ -169,44 +169,39 @@ namespace BUYERDBENTITY.Repositories
 
         public async Task<List<Items>> Search(Product product)
         {
-            Items items= _context.Items.SingleOrDefault(e => e.Itemname == product.productName);
-            if (items == null)
+            if (product == null)
             {
                 return null;
             }
             else
             {
-                product.productName = items.Itemname;
                 return await _context.Items.Where(e => e.Itemname == product.productName).ToListAsync();
             }
         }
 
         public async Task<List<Items>> SearchItemByCategory(ProductCategory productCategory)
         {
-            Category category = _context.Category.SingleOrDefault(e => e.Cname == productCategory.categoryName);
-            if (category == null)
+            if (productCategory == null)
             {
                 return null;
             }
             else
             {
-                productCategory.categoryId = category.Cid;
-                return await _context.Items.Where(e => e.Categoryid == productCategory.categoryId).ToListAsync();
+                return await _context.Items.Where(e => e.Categoryname == productCategory.categoryName).ToListAsync();
             }
         }
 
         public async Task<List<Items>> SearchItemBySubCategory(ProductSubCategory productSubCategory)
         {
-            SubCategory subCategory = _context.SubCategory.SingleOrDefault(e => e.Cname == productSubCategory.subCategoryName);
-            if (subCategory == null)
+            if (productSubCategory == null)
             {
                 return null;
             }
             else
             {
-                productSubCategory.subCategoryId = subCategory.Subid;
-                return await _context.Items.Where(e => e.Categoryid == productSubCategory.subCategoryId).ToListAsync();
+                return await _context.Items.Where(e => e.Subcategoryname == productSubCategory.subCategoryName).ToListAsync();
             }
         }
     }
+
 }

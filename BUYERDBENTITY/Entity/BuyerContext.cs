@@ -88,7 +88,7 @@ namespace BUYERDBENTITY.Entity
 
                 entity.Property(e => e.Imagename)
                     .HasColumnName("imagename")
-                    .HasMaxLength(50)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Itemid).HasColumnName("itemid");
@@ -117,6 +117,7 @@ namespace BUYERDBENTITY.Entity
                 entity.HasOne(d => d.B)
                     .WithMany(p => p.Cart)
                     .HasForeignKey(d => d.Bid)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK__Cart__bid__20C1E124");
 
                 entity.HasOne(d => d.Category)
@@ -164,6 +165,11 @@ namespace BUYERDBENTITY.Entity
 
                 entity.Property(e => e.Categoryid).HasColumnName("categoryid");
 
+                entity.Property(e => e.Categoryname)
+                    .HasColumnName("categoryname")
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Description)
                     .HasColumnName("description")
                     .HasMaxLength(20)
@@ -171,7 +177,7 @@ namespace BUYERDBENTITY.Entity
 
                 entity.Property(e => e.Imagename)
                     .HasColumnName("imagename")
-                     .HasMaxLength(20)
+                    .HasMaxLength(50)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Itemname)
@@ -180,11 +186,7 @@ namespace BUYERDBENTITY.Entity
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Price)
-                    .IsRequired()
-                    .HasColumnName("price")
-                    .HasMaxLength(20)
-                    .IsUnicode(false);
+                entity.Property(e => e.Price).HasColumnName("price");
 
                 entity.Property(e => e.Remarks)
                     .HasColumnName("remarks")
@@ -194,6 +196,11 @@ namespace BUYERDBENTITY.Entity
                 entity.Property(e => e.Stockno).HasColumnName("stockno");
 
                 entity.Property(e => e.Subcategoryid).HasColumnName("subcategoryid");
+
+                entity.Property(e => e.Subcategoryname)
+                    .HasColumnName("subcategoryname")
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
 
                 entity.HasOne(d => d.Category)
                     .WithMany(p => p.Items)
@@ -241,6 +248,7 @@ namespace BUYERDBENTITY.Entity
                 entity.HasOne(d => d.B)
                     .WithMany(p => p.Purchasehistory)
                     .HasForeignKey(d => d.Bid)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK__Purchasehis__bid__1B0907CE");
 
                 entity.HasOne(d => d.Item)
