@@ -16,7 +16,6 @@ namespace BUYERDBENTITY.Entity
         public int? Stockno { get; set; }
         public string Remarks { get; set; }
         public string Imagename { get; set; }
-
         public virtual Buyer B { get; set; }
         public virtual Category Category { get; set; }
         public virtual Items Item { get; set; }

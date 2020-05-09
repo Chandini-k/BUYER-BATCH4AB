@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BUYERDBENTITY.Entity;
+using BUYERDBENTITY.Models;
 using ItemsService.Manager;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -18,21 +19,14 @@ namespace ItemsService.Controllers
         {
             _iitemManager = iitemManager;
         }
-        [HttpGet]
-        [Route("GetItems")]
-        public async Task<IActionResult> GetItems()
-        {
-            List<Items> items = await _iitemManager.GetItems();
-            if (items != null)
-            {
-                return Ok(items);
-            }
-            else
-                return Ok("No Items Found");
-        }
+        /// <summary>
+        /// Add to cart
+        /// </summary>
+        /// <param name="cart"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("AddtoCart")]
-        public async Task<IActionResult> AddToCart(Cart cart)
+        public async Task<IActionResult> AddToCart(AddCart cart)
         {
             bool cart1 = await _iitemManager.AddToCart(cart);
             if (cart1)
@@ -40,62 +34,112 @@ namespace ItemsService.Controllers
             else
                 return Ok("Item not added");
         }
+        /// <summary>
+        /// Buying item
+        /// </summary>
+        /// <param name="purchasehistory"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("BuyItem")]
-        public async Task<IActionResult> BuyItem(Purchasehistory purchasehistory)
+        public async Task<IActionResult> BuyItem(PurchaseHistory purchasehistory)
         {
             return Ok(await _iitemManager.BuyItem(purchasehistory));
         }
+        /// <summary>
+        /// Check cart item
+        /// </summary>
+        /// <param name="buyerId"></param>
+        /// <param name="itemId"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("CheckCartItem/{buyerId}/{itemId}")]
         public async Task<IActionResult> CheckCartItem(int buyerId, int itemId)
         {
             return Ok(await _iitemManager.CheckCartItem(buyerId, itemId));
         }
+        /// <summary>
+        /// Delete Cart Item
+        /// </summary>
+        /// <param name="cartid"></param>
+        /// <returns></returns>
         [HttpDelete]
         [Route("DeleteCart/{cartid}")]
         public async Task<IActionResult> DeleteCart(int cartid)
         {
             return Ok(await _iitemManager.DeleteCart(cartid));
         }
+        /// <summary>
+        /// Get Cart Item
+        /// </summary>
+        /// <param name="cartid"></param>
+        /// <returns></returns>
         [HttpGet]
-        [Route("GetCartItem/{cid}")]
-        public async Task<IActionResult> GetCartItem(int cartId)
+        [Route("GetCartItem/{cartid}")]
+        public async Task<IActionResult> GetCartItem(int cartid)
         {
-            Cart cart = await _iitemManager.GetCartItem(cartId);
-            if (cart != null)
+            AddCart cart1 = await _iitemManager.GetCartItem(cartid);
+            if (cart1 != null)
             {
-                return Ok(cart);
+                return Ok(cart1);
             }
             else
             {
                 return Ok("Cart is Null");
             }
         }
+        /// <summary>
+        /// Get Cart Itm
+        /// </summary>
+        /// <param name="buyerId"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("GetCart/{buerId}")]
         public async Task<IActionResult> GetCart(int buyerId)
         {
             return Ok(await _iitemManager.GetCarts(buyerId));
         }
+        /// <summary>
+        /// GetCategory of items
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("GetCategory")]
         public async Task<IActionResult> GetCategory()
         {
             return Ok(await _iitemManager.GetCategories());
         }
+        /// <summary>
+        /// Get cart count
+        /// </summary>
+        /// <param name="buyerId"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("GetCount/{buyerId}")]
         public async Task<IActionResult> GetCount(int buyerId)
         {
             return Ok(await _iitemManager.GetCount(buyerId));
         }
-        [HttpGet]
-        [Route("GetSubCategory/{categoryId}")]
-        public async Task<IActionResult> SubCategory(int categoryId)
+        /// <summary>
+        /// Get SubCategory
+        /// </summary>
+        /// <param name="productCategory"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("GetSubCategory")]
+        public async Task<IActionResult> SubCategory(ProductCategory productCategory)
         {
-            return Ok(await _iitemManager.GetSubCategories(categoryId));
+            if(productCategory is null)
+            {
+                return BadRequest();
+            }
+            return Ok(await _iitemManager.GetSubCategories(productCategory));
         }
+        /// <summary>
+        /// Items Prices in sorted order
+        /// </summary>
+        /// <param name="price"></param>
+        /// <param name="price1"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("SortItem/{price}/{price1}")]
         public async Task<IActionResult> Sort(int price, int price1)
@@ -104,31 +148,51 @@ namespace ItemsService.Controllers
             return Ok(await _iitemManager.Items(price, price1));
 
         }
-        [HttpGet]
-        [Route("PurchaseHistory/{buyerId}")]
-        public async Task<IActionResult> Purchase(int buyerId)
+        /// <summary>
+        /// Purchase history
+        /// </summary>
+        /// <param name="purchaseHistory"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("PurchaseHistory")]
+        public async Task<IActionResult> Purchase(PurchaseHistory purchaseHistory)
         {
-            return Ok(await _iitemManager.Purchase(buyerId));
+            return Ok(await _iitemManager.Purchase(purchaseHistory));
         }
-        [HttpGet]
-        [Route("SearchItems/{itemName}")]
-        public async Task<IActionResult> SearchItem(string itemName)
+        /// <summary>
+        /// Search items
+        /// </summary>
+        /// <param name="product"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("SearchItems")]
+        public async Task<IActionResult> SearchItem(Product product)
         {
 
-            return Ok(await _iitemManager.Search(itemName));
+            return Ok(await _iitemManager.Search(product));
         }
-        [HttpGet]
-        [Route("SearchItemByCategory/{categoryId}")]
-        public async Task<IActionResult> SearchItemByCategory(int categoryId)
+        /// <summary>
+        /// search items using category
+        /// </summary>
+        /// <param name="productCategory"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("SearchItemByCategory")]
+        public async Task<IActionResult> SearchItemByCategory(ProductCategory productCategory)
         {
-                return Ok(await _iitemManager.SearchItemByCategory(categoryId));
+                return Ok(await _iitemManager.SearchItemByCategory(productCategory));
         }
-        [HttpGet]
-        [Route("SearchItemBySubCategory/{subCategoryId}")]
-        public async Task<IActionResult> SearchItemBySubCategory(int subCategoryId)
+        /// <summary>
+        /// Search items using Subcategory
+        /// </summary>
+        /// <param name="productSubCategory"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("SearchItemBySubCategory")]
+        public async Task<IActionResult> SearchItemBySubCategory(ProductSubCategory productSubCategory)
         {
             
-            return Ok(await _iitemManager.SearchItemBySubCategory(subCategoryId));
+            return Ok(await _iitemManager.SearchItemBySubCategory(productSubCategory));
             
         }
     }

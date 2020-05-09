@@ -88,7 +88,7 @@ namespace BUYERDBENTITY.Entity
 
                 entity.Property(e => e.Imagename)
                     .HasColumnName("imagename")
-                    .HasMaxLength(20)
+                    .HasMaxLength(50)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Itemid).HasColumnName("itemid");
@@ -171,7 +171,8 @@ namespace BUYERDBENTITY.Entity
 
                 entity.Property(e => e.Imagename)
                     .HasColumnName("imagename")
-                    .HasColumnType("image");
+                     .HasMaxLength(20)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Itemname)
                     .IsRequired()

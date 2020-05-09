@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ItemsService", "..\ItemsSer
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BUYERDBENTITY", "..\BUYERDBENTITY\BUYERDBENTITY.csproj", "{23891CAC-A887-4427-9752-16F6DFFA918B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItemServiceTesting", "..\ItemServiceTesting\ItemServiceTesting.csproj", "{128C885A-7A21-4946-9C73-D6D7E78689F3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{23891CAC-A887-4427-9752-16F6DFFA918B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23891CAC-A887-4427-9752-16F6DFFA918B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23891CAC-A887-4427-9752-16F6DFFA918B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{128C885A-7A21-4946-9C73-D6D7E78689F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{128C885A-7A21-4946-9C73-D6D7E78689F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{128C885A-7A21-4946-9C73-D6D7E78689F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{128C885A-7A21-4946-9C73-D6D7E78689F3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
