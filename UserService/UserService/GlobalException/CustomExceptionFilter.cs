@@ -26,11 +26,11 @@ namespace UserService.GlobalException
                 message = "A server error occurred.";
                 status = HttpStatusCode.NotImplemented;
             }
-            else if (exceptionType == typeof(MyAppException))
-            {
-                message = context.Exception.ToString();
-                status = HttpStatusCode.InternalServerError;
-            }
+            //else if (exceptionType == typeof(MyAppException))
+            //{
+            //    message = context.Exception.ToString();
+            //    status = HttpStatusCode.InternalServerError;
+            //}
             else
             {
                 message = context.Exception.Message;
@@ -46,20 +46,20 @@ namespace UserService.GlobalException
         }
     }
 #pragma warning disable S3925 // "ISerializable" should be implemented correctly
-    public class MyAppException : Exception
-#pragma warning restore S3925 // "ISerializable" should be implemented correctly
-    {
-        public MyAppException()
-        { }
+//    public class MyAppException : Exception
+//#pragma warning restore S3925 // "ISerializable" should be implemented correctly
+//    {
+//        public MyAppException()
+//        { }
 
-        public MyAppException(string message)
-            : base(message)
-        { }
+//        public MyAppException(string message)
+//            : base(message)
+//        { }
 
-        public MyAppException(string message, Exception innerException)
-            : base(message, innerException)
-        { }
-    }
+//        public MyAppException(string message, Exception innerException)
+//            : base(message, innerException)
+//        { }
+//    }
 
 }
 

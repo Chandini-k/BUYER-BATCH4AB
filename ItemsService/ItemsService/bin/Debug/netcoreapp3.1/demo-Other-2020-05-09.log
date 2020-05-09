@@ -27,3 +27,7 @@
    at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
    at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
    at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)|url: http://localhost/api/Items/SearchItemByCategory|action: SearchItemByCategory
+2020-05-09 10:13:05.0847||DEBUG|ItemsService.Program|init main function |url: |action: 
+2020-05-09 10:13:11.0216|3|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect. |url: http://localhost/api/Items/SearchItemByCategory|action: 
+2020-05-09 13:32:07.1435||DEBUG|ItemsService.Program|init main function |url: |action: 
+2020-05-09 13:32:22.1757|3|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect. |url: http://localhost/api/Items/SearchItems|action: 

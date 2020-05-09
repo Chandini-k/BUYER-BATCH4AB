@@ -79,9 +79,9 @@ namespace ItemsService.Manager
             }
         }
 
-        public async Task<List<Cart>> GetCarts(int buyerid)
+        public async Task<List<AddCart>> GetCarts(int buyerid)
         {
-            List<Cart> cart = await _iitemRepository.GetCarts(buyerid);
+            List<AddCart> cart = await _iitemRepository.GetCarts(buyerid);
             if (cart!=null)
             {
                 return cart;
@@ -92,9 +92,9 @@ namespace ItemsService.Manager
             }
         }
 
-        public async Task<List<Category>> GetCategories()
+        public async Task<List<ProductCategory>> GetCategories()
         {
-            List<Category> category = await _iitemRepository.GetCategories();
+            List<ProductCategory> category = await _iitemRepository.GetCategories();
             if (category != null)
             {
                 return category;
@@ -116,9 +116,9 @@ namespace ItemsService.Manager
                 return 0;
         }
 
-        public async Task<List<SubCategory>> GetSubCategories(ProductCategory productCategory)
+        public async Task<List<ProductSubCategory>> GetSubCategories(ProductCategory productCategory)
         {
-            List<SubCategory> subCategory = await _iitemRepository.GetSubCategories(productCategory);
+            List<ProductSubCategory> subCategory = await _iitemRepository.GetSubCategories(productCategory);
             if (subCategory != null)
             {
                 return subCategory;
@@ -129,9 +129,9 @@ namespace ItemsService.Manager
             }
         }
 
-        public async Task<List<Items>> Items(int price, int price1)
+        public async Task<List<Product>> Items(int price, int price1)
         {
-            List<Items> itemsprice = await _iitemRepository.Items(price,price1);
+            List<Product> itemsprice = await _iitemRepository.Items(price,price1);
             if (itemsprice != null)
             {
                 return itemsprice;
@@ -155,9 +155,9 @@ namespace ItemsService.Manager
             }
         }
 
-        public async Task<List<Items>> Search(Product product)
+        public async Task<List<Product>> Search(Product product)
         {
-            List<Items> search = await _iitemRepository.Search(product);
+            List<Product> search = await _iitemRepository.Search(product);
             if (search != null)
             {
                 return search;
@@ -168,9 +168,9 @@ namespace ItemsService.Manager
             }
         }
 
-        public async Task<List<Items>> SearchItemByCategory(ProductCategory productCategory)
+        public async Task<List<Product>> SearchItemByCategory(ProductCategory productCategory)
         {
-            List<Items> searchCategory = await _iitemRepository.SearchItemByCategory(productCategory);
+            List<Product> searchCategory = await _iitemRepository.SearchItemByCategory(productCategory);
             if (searchCategory!=null)
             {
                 return searchCategory;
@@ -181,9 +181,9 @@ namespace ItemsService.Manager
             }
         }
 
-        public async Task<List<Items>> SearchItemBySubCategory(ProductSubCategory productSubCategory)
+        public async Task<List<Product>> SearchItemBySubCategory(ProductSubCategory productSubCategory)
         {
-            List<Items> searchSubCategory = await _iitemRepository.SearchItemBySubCategory(productSubCategory);
+            List<Product> searchSubCategory = await _iitemRepository.SearchItemBySubCategory(productSubCategory);
             if (searchSubCategory != null)
             {
                 return searchSubCategory;

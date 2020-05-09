@@ -8,5 +8,6 @@ namespace BUYERDBENTITY.Models
     {
         public string categoryName { get; set; }
         public int categoryId { get; set; }
+        public string categoryDetails { get; set; }
     }
 }

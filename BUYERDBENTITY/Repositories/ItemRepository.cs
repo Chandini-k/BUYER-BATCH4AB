@@ -120,14 +120,48 @@ namespace BUYERDBENTITY.Repositories
             }
         }
 
-        public async Task<List<Cart>> GetCarts(int bid)
+        public async Task<List<AddCart>> GetCarts(int bid)
         {
-            return await _context.Cart.Where(e => e.Bid == bid).ToListAsync();
+            List<Cart> cart = await _context.Cart.Where(e => e.Bid == bid).ToListAsync();
+            if (cart == null)
+                return null;
+            else
+            {
+              List<AddCart> cart1= cart.Select(s => new AddCart
+              {
+                carId = s.Id,
+                categoryId = s.Categoryid,
+                subCategoryId = s.Subcategoryid,
+                buyerId = s.Bid,
+                itemId = s.Itemid,
+                price = s.Price,
+                itemName = s.Itemname,
+                description = s.Description,
+                stockno = s.Stockno,
+                remarks = s.Remarks,
+                imageName = s.Imagename,
+            }).ToList();
+                return cart1;
+            }
         }
 
-        public async Task<List<Category>> GetCategories()
+        public async Task<List<ProductCategory>> GetCategories()
         {
-            return await _context.Category.ToListAsync();
+            List<Category> categories = await _context.Category.ToListAsync();
+            if (categories == null)
+            {
+                return null;
+            }
+            else
+            {
+                List<ProductCategory> products = categories.Select(s => new ProductCategory
+                {
+                    categoryId = s.Cid,
+                    categoryName = s.Cname,
+                    categoryDetails=s.Cdetails,
+                }).ToList();
+                return products;
+            }
         }
 
         public async Task<int> GetCount(int bid)
@@ -136,21 +170,53 @@ namespace BUYERDBENTITY.Repositories
             int count1=count.Count();
             return count1;
         }
-        public async Task<List<SubCategory>> GetSubCategories(ProductCategory productCategory)
+        public async Task<List<ProductSubCategory>> GetSubCategories(ProductCategory productCategory)
         {
-            if (productCategory == null)
+            List<SubCategory> items = await _context.SubCategory.Where(e => e.Cname == productCategory.categoryName).ToListAsync();
+            if (items == null)
             {
                 return null;
             }
             else
             {
-                return await _context.SubCategory.Where(e => e.Cname == productCategory.categoryName).ToListAsync();
+                List<ProductSubCategory> products = items.Select(s => new ProductSubCategory
+                {
+                    subCategoryName = s.Subname,
+                    categoryId = s.Cid,
+                    subCategoryId = s.Subid,
+                    categoryName = s.Cname,
+                    gst = s.Gst,
+                    subCategoryDetails = s.Sdetails,
+                }).ToList();
+                return products;
             }
         }
 
-        public async Task<List<Items>> Items(int price, int price1)
+        public async Task<List<Product>> Items(int price, int price1)
         {
-            return await _context.Items.Where(e => e.Price >= price && e.Price <= price1).ToListAsync();
+            List<Items> items = await _context.Items.Where(e => e.Price >= price && e.Price <= price1).ToListAsync();
+            if (items == null)
+            {
+                return null;
+            }
+            else
+            {
+                List<Product> products = items.Select(s => new Product
+                {
+                    productId = s.Id,
+                    productName = s.Itemname,
+                    categoryId = s.Categoryid,
+                    subCategoryId = s.Subcategoryid,
+                    categoryName = s.Categoryname,
+                    subCategoryName = s.Subcategoryname,
+                    price = s.Price,
+                    description = s.Description,
+                    stockno = s.Stockno,
+                    remarks = s.Remarks,
+                    imageName = s.Imagename,
+                }).ToList();
+                return products;
+            }
         }
 
         public async Task<List<Purchasehistory>> Purchase(PurchaseHistory purchaseHistory)
@@ -167,39 +233,84 @@ namespace BUYERDBENTITY.Repositories
            
         }
 
-        public async Task<List<Items>> Search(Product product)
+        public async Task<List<Product>> Search(Product product)
         {
-            if (product == null)
+            List<Items> items = await _context.Items.Where(e => e.Itemname == product.productName).ToListAsync();
+            if (items == null)
             {
                 return null;
             }
             else
             {
-                return await _context.Items.Where(e => e.Itemname == product.productName).ToListAsync();
+                List<Product> products = items.Select(s => new Product
+                {
+                    productId = s.Id,
+                    productName = s.Itemname,
+                    categoryId = s.Categoryid,
+                    subCategoryId = s.Subcategoryid,
+                    categoryName = s.Categoryname,
+                    subCategoryName = s.Subcategoryname,
+                    price = s.Price,
+                    description = s.Description,
+                    stockno = s.Stockno,
+                    remarks = s.Remarks,
+                    imageName = s.Imagename,
+                }).ToList();
+                return products;
             }
         }
 
-        public async Task<List<Items>> SearchItemByCategory(ProductCategory productCategory)
+        public async Task<List<Product>> SearchItemByCategory(ProductCategory productCategory)
         {
-            if (productCategory == null)
+            List<Items> items= await _context.Items.Where(e => e.Categoryname == productCategory.categoryName).ToListAsync();
+            if (items == null)
             {
                 return null;
             }
             else
             {
-                return await _context.Items.Where(e => e.Categoryname == productCategory.categoryName).ToListAsync();
+                List<Product> products = items.Select(s => new Product
+                {
+                    productId= s.Id,
+                    productName = s.Itemname,
+                    categoryId = s.Categoryid,
+                    subCategoryId = s.Subcategoryid,
+                    categoryName = s.Categoryname,
+                    subCategoryName = s.Subcategoryname,
+                    price=s.Price,
+                    description = s.Description,
+                    stockno = s.Stockno,
+                    remarks = s.Remarks,
+                    imageName = s.Imagename,
+                }).ToList();
+                return products;
             }
         }
 
-        public async Task<List<Items>> SearchItemBySubCategory(ProductSubCategory productSubCategory)
+        public async Task<List<Product>> SearchItemBySubCategory(ProductSubCategory productSubCategory)
         {
-            if (productSubCategory == null)
+            List<Items> items = await _context.Items.Where(e => e.Subcategoryname == productSubCategory.subCategoryName).ToListAsync();
+            if (items == null)
             {
                 return null;
             }
             else
             {
-                return await _context.Items.Where(e => e.Subcategoryname == productSubCategory.subCategoryName).ToListAsync();
+                List<Product> products = items.Select(s => new Product
+                {
+                    productId = s.Id,
+                    productName = s.Itemname,
+                    categoryId = s.Categoryid,
+                    subCategoryId = s.Subcategoryid,
+                    categoryName = s.Categoryname,
+                    subCategoryName = s.Subcategoryname,
+                    price = s.Price,
+                    description = s.Description,
+                    stockno = s.Stockno,
+                    remarks = s.Remarks,
+                    imageName = s.Imagename,
+                }).ToList();
+                return products;
             }
         }
     }

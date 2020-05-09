@@ -99,11 +99,7 @@ namespace BUYERDBENTITY.Entity
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Price)
-                    .IsRequired()
-                    .HasColumnName("price")
-                    .HasMaxLength(20)
-                    .IsUnicode(false);
+                entity.Property(e => e.Price).HasColumnName("price");
 
                 entity.Property(e => e.Remarks)
                     .HasColumnName("remarks")

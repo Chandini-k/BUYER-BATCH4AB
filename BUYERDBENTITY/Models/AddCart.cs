@@ -11,7 +11,7 @@ namespace BUYERDBENTITY.Models
         public int? subCategoryId { get; set; }
         public int? buyerId { get; set; }
         public int? itemId { get; set; }
-        public string price { get; set; }
+        public int? price { get; set; }
         public string itemName { get; set; }
         public string description { get; set; }
         public int? stockno { get; set; }
