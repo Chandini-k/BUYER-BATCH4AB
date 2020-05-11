@@ -142,9 +142,9 @@ namespace ItemsService.Manager
             }
         }
 
-        public async Task<List<Purchasehistory>> Purchase(PurchaseHistory purchaseHistory)
+        public async Task<List<PurchaseHistory>> Purchase(PurchaseHistory purchaseHistory)
         {
-            List<Purchasehistory> purchase = await _iitemRepository.Purchase(purchaseHistory);
+            List<PurchaseHistory> purchase = await _iitemRepository.Purchase(purchaseHistory);
             if (purchase!= null)
             {
                 return purchase;

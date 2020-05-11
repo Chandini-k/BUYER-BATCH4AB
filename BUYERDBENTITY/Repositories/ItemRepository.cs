@@ -85,10 +85,10 @@ namespace BUYERDBENTITY.Repositories
         public async Task<bool> DeleteCart(int cartId)
         {
             Cart cart=await _context.Cart.FindAsync(cartId);
-            _context.Cart.Remove(cart);
-            var cartitem=await _context.SaveChangesAsync();
-            if(cartitem==0)
+            if (cart != null)
             {
+                _context.Cart.Remove(cart);
+                await _context.SaveChangesAsync();
                 return true;
             }
             else
@@ -167,8 +167,15 @@ namespace BUYERDBENTITY.Repositories
         public async Task<int> GetCount(int bid)
         {
             var count=await _context.Cart.Where(e => e.Bid == bid).ToListAsync();
-            int count1=count.Count();
-            return count1;
+            if (count != null)
+            {
+                int count1 = count.Count();
+                return count1;
+            }
+            else
+            {
+                return 0;
+            }
         }
         public async Task<List<ProductSubCategory>> GetSubCategories(ProductCategory productCategory)
         {
@@ -219,7 +226,7 @@ namespace BUYERDBENTITY.Repositories
             }
         }
 
-        public async Task<List<Purchasehistory>> Purchase(PurchaseHistory purchaseHistory)
+        public async Task<List<PurchaseHistory>> Purchase(PurchaseHistory purchaseHistory)
         {
             Buyer buyer = _context.Buyer.Find(purchaseHistory.buyerId);
             if(buyer==null)
@@ -228,7 +235,26 @@ namespace BUYERDBENTITY.Repositories
             }
             else
             {
-                return await _context.Purchasehistory.Where(e => e.Bid == buyer.Bid).ToListAsync();
+                List<Purchasehistory> purchasehistories= await _context.Purchasehistory.Where(e => e.Bid == buyer.Bid).ToListAsync();
+                if(purchasehistories==null)
+                {
+                    return null;
+                }
+                else
+                {
+                    List<PurchaseHistory> purchaseHistories = purchasehistories.Select(s => new PurchaseHistory
+                    {
+                        purchaseId = s.Id,
+                        buyerId = s.Bid,
+                        transactionType = s.Transactiontype,
+                        itemId = s.Itemid,
+                        noOfItems = s.Noofitems,
+                        dateTime = s.Datetime,
+                        remarks = s.Remarks,
+                        transactionStatus = s.Transactionstatus,
+                    }).ToList();
+                    return purchaseHistories;
+                }
             }
            
         }

@@ -13,7 +13,7 @@ namespace BUYERDBENTITY.Repositories
         Task<List<Product>> SearchItemByCategory(ProductCategory productCategory);
         Task<List<Product>> SearchItemBySubCategory(ProductSubCategory productSubCategory);
         Task<bool> BuyItem(PurchaseHistory purchase);
-        Task<List<Purchasehistory>> Purchase(PurchaseHistory purchaseHistory);
+        Task<List<PurchaseHistory>> Purchase(PurchaseHistory purchaseHistory);
         Task<List<ProductCategory>> GetCategories();
         Task<List<ProductSubCategory>> GetSubCategories(ProductCategory productCategory);
         Task<bool> AddToCart(AddCart cart);

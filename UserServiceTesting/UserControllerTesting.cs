@@ -35,9 +35,9 @@ namespace UserServiceTesting
             try
             {
                 DateTime dateTime = System.DateTime.Now;
+                mockUserManageer.Setup(x => x.BuyerRegister(It.IsAny<BuyerRegister>())).ReturnsAsync(new bool());
                 BuyerRegister buyerRegister = new BuyerRegister() { buyerId = buyerId, userName = userName, password = password, mobileNo = mobileNo, emailId = email, dateTime = dateTime };
-                mockUserManageer.Setup(x => x.BuyerRegister(buyerRegister)).ReturnsAsync(true);
-                var result = await userController.Buyer(buyerRegister) as OkResult;
+                var result = await userController.Buyer(buyerRegister) as OkObjectResult;
                 Assert.That(result, Is.Not.Null);
                 Assert.That(result.StatusCode, Is.EqualTo(200));
             }
@@ -53,15 +53,16 @@ namespace UserServiceTesting
         /// <param name="password"></param>
         /// <returns></returns>
         [Test]
-        [TestCase("chandi", "abcdefg@")]
+        [TestCase("chan", "abcdefg@")]
         [Description("Buyer Login")]
         public async Task BuyerLogin_Successfull(string userName, string password)
         {
             try
             {
-                Login login = new Login() { userName = userName, userPassword = password };
-                var result = await userController.BuyerLogin(login) as OkResult;
-                Assert.That(result, Is.Not.Null);
+                var login = new Login() { userName = userName, userPassword = password };
+                mockUserManageer.Setup(x => x.BuyerLogin(login));
+                var result = await userController.BuyerLogin(login) as OkObjectResult;
+                Assert.That(result,Is.Not.Null);
                 Assert.That(result.StatusCode, Is.EqualTo(200));
             }
             catch (Exception e)
