@@ -36,7 +36,7 @@ namespace ItemServiceTesting
         {
             try
             {
-                var cart = new AddCart { carId = cartId, categoryId = categoryId, subCategoryId = subCategoryId, buyerId = buyerId,itemId=itemid, price = price, itemName = itemName, description = description, stockno = stockno, remarks = remarks, imageName = imageName };
+                var cart = new AddCart { cartId = cartId, categoryId = categoryId, subCategoryId = subCategoryId, buyerId = buyerId,itemId=itemid, price = price, itemName = itemName, description = description, stockno = stockno, remarks = remarks, imageName = imageName };
                 var result = await iitemRepository.AddToCart(cart);
                 Assert.NotNull(result);
             }
@@ -298,8 +298,7 @@ namespace ItemServiceTesting
         {
             try
             {
-                ProductCategory productCategory = new ProductCategory { categoryName = categoryName };
-                var result = await iitemRepository.GetSubCategories(productCategory);
+                var result = await iitemRepository.GetSubCategories(categoryName);
                 Assert.NotNull(result);
             }
             catch (Exception e)
@@ -314,8 +313,7 @@ namespace ItemServiceTesting
         {
             try
             {
-                ProductCategory productCategory = new ProductCategory { categoryName = categoryName };
-                var result = await iitemRepository.GetSubCategories(productCategory);
+                var result = await iitemRepository.GetSubCategories(categoryName);
                 Assert.IsEmpty(result);
             }
             catch (Exception e)
@@ -356,8 +354,7 @@ namespace ItemServiceTesting
         {
             try
             {
-                PurchaseHistory purchase = new PurchaseHistory { buyerId = buyerId };
-                var result = await iitemRepository.Purchase(purchase);
+                var result = await iitemRepository.Purchase(buyerId);
                 Assert.IsNotNull(result);
             }
             catch (Exception e)
@@ -372,8 +369,7 @@ namespace ItemServiceTesting
         {
             try
             {
-                PurchaseHistory purchase = new PurchaseHistory { buyerId = buyerId };
-                var result = await iitemRepository.Purchase(purchase);
+                var result = await iitemRepository.Purchase(buyerId);
                 Assert.IsEmpty(result);
             }
             catch (Exception e)
@@ -393,8 +389,7 @@ namespace ItemServiceTesting
         {
             try
             {
-                Product product = new Product { productName = itemName };
-                var result = await iitemRepository.Search(product);
+                var result = await iitemRepository.Search(itemName);
                 Assert.NotNull(result);
             }
             catch (Exception e)
@@ -409,8 +404,7 @@ namespace ItemServiceTesting
         {
             try
             {
-                Product product = new Product { productName = itemName };
-                var result = await iitemRepository.Search(product);
+                var result = await iitemRepository.Search(itemName);
                 Assert.IsEmpty(result);
             }
             catch (Exception e)
@@ -430,8 +424,7 @@ namespace ItemServiceTesting
         {
             try
             {
-                ProductCategory product = new ProductCategory { categoryName = itemName };
-                var result = await iitemRepository.SearchItemByCategory(product);
+                var result = await iitemRepository.SearchItemByCategory(itemName);
                 Assert.NotNull(result);
             }
             catch (Exception e)
@@ -446,8 +439,7 @@ namespace ItemServiceTesting
         {
             try
             {
-                ProductCategory product = new ProductCategory { categoryName = itemName };
-                var result = await iitemRepository.SearchItemByCategory(product);
+                var result = await iitemRepository.SearchItemByCategory(itemName);
                 Assert.IsEmpty(result);
             }
             catch (Exception e)
@@ -467,8 +459,7 @@ namespace ItemServiceTesting
         {
             try
             {
-                ProductSubCategory product = new ProductSubCategory { subCategoryName = itemName };
-                var result = await iitemRepository.SearchItemBySubCategory(product);
+                var result = await iitemRepository.SearchItemBySubCategory(itemName);
                 Assert.NotNull(result);
             }
             catch (Exception e)
@@ -483,8 +474,7 @@ namespace ItemServiceTesting
         {
             try
             {
-                ProductSubCategory product = new ProductSubCategory { subCategoryName = itemName };
-                var result = await iitemRepository.SearchItemBySubCategory(product);
+                var result = await iitemRepository.SearchItemBySubCategory(itemName);
                 Assert.IsEmpty(result);
             }
             catch (Exception e)

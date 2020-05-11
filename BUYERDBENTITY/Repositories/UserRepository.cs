@@ -40,12 +40,17 @@ namespace BUYERDBENTITY.Repositories
             }
         }
 
-        public async Task<Login> BuyerLogin(Login login)
+        public async Task<Login> BuyerLogin(string username,string password)
         {
-             Buyer buyer = await _context.Buyer.SingleOrDefaultAsync(e => e.Username ==login.userName && e.Password == login.userPassword);
+             Buyer buyer = await _context.Buyer.SingleOrDefaultAsync(e => e.Username ==username && e.Password == password);
             if (buyer!=null)
             {
-                return login;
+                return new Login
+                {
+                    userName = buyer.Username,
+                    userPassword = buyer.Password,
+                    buyerId=buyer.Bid,
+                };
             }
             else
             {

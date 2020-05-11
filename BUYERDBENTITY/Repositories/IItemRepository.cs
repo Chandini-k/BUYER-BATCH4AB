@@ -9,13 +9,13 @@ namespace BUYERDBENTITY.Repositories
 {
     public interface IItemRepository
     {
-        Task<List<Product>> Search(Product product);
-        Task<List<Product>> SearchItemByCategory(ProductCategory productCategory);
-        Task<List<Product>> SearchItemBySubCategory(ProductSubCategory productSubCategory);
+        Task<List<Product>> Search(string itemName);
+        Task<List<Product>> SearchItemByCategory(string categoryName);
+        Task<List<Product>> SearchItemBySubCategory(string subCategoryName);
         Task<bool> BuyItem(PurchaseHistory purchase);
-        Task<List<PurchaseHistory>> Purchase(PurchaseHistory purchaseHistory);
+        Task<List<PurchaseHistory>> Purchase(int buyerId);
         Task<List<ProductCategory>> GetCategories();
-        Task<List<ProductSubCategory>> GetSubCategories(ProductCategory productCategory);
+        Task<List<ProductSubCategory>> GetSubCategories(string categoryName);
         Task<bool> AddToCart(AddCart cart);
         Task<int> GetCount(int bid);
         Task<bool> CheckCartItem(int buyerid, int itemid);

@@ -137,6 +137,13 @@ C:\BUYERPROJECT\UserService\UserService\bin\Debug\netcoreapp3.1\ru\Microsoft.Cod
 C:\BUYERPROJECT\UserService\UserService\bin\Debug\netcoreapp3.1\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\BUYERPROJECT\UserService\UserService\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\BUYERPROJECT\UserService\UserService\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\BUYERPROJECT\UserService\UserService\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\BUYERPROJECT\UserService\UserService\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+C:\BUYERPROJECT\UserService\UserService\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+C:\BUYERPROJECT\UserService\UserService\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+C:\BUYERPROJECT\UserService\UserService\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\BUYERPROJECT\UserService\UserService\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+C:\BUYERPROJECT\UserService\UserService\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\BUYERPROJECT\UserService\UserService\obj\Debug\netcoreapp3.1\UserService.csproj.CoreCompileInputs.cache
 C:\BUYERPROJECT\UserService\UserService\obj\Debug\netcoreapp3.1\UserService.MvcApplicationPartsAssemblyInfo.cs
 C:\BUYERPROJECT\UserService\UserService\obj\Debug\netcoreapp3.1\UserService.MvcApplicationPartsAssemblyInfo.cache

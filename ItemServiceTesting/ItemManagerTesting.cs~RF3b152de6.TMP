@@ -37,7 +37,7 @@ namespace ItemServiceTesting
         {
             try
             {
-                var cart = new AddCart { cartId = cartId, categoryId = categoryId, subCategoryId = subCategoryId, buyerId = buyerId, itemId = itemid, price = price, itemName = itemName, description = description, stockno = stockno, remarks = remarks, imageName = imageName };
+                var cart = new AddCart { carId = cartId, categoryId = categoryId, subCategoryId = subCategoryId, buyerId = buyerId, itemId = itemid, price = price, itemName = itemName, description = description, stockno = stockno, remarks = remarks, imageName = imageName };
                 var mock = new Mock<IItemRepository>();
                 mock.Setup(x => x.AddToCart(cart)).ReturnsAsync(true);
                 ItemManager itemManager = new ItemManager(mock.Object);
@@ -319,9 +319,9 @@ namespace ItemServiceTesting
                 ProductCategory productCategory = new ProductCategory { categoryName = categoryName };
                 List<ProductSubCategory> subCategories = new List<ProductSubCategory>();
                 var mock = new Mock<IItemRepository>();
-                mock.Setup(x => x.GetSubCategories(categoryName)).ReturnsAsync(subCategories);
+                mock.Setup(x => x.GetSubCategories(productCategory)).ReturnsAsync(subCategories);
                 ItemManager itemManager = new ItemManager(mock.Object);
-                var result = await itemManager.GetSubCategories(categoryName);
+                var result = await itemManager.GetSubCategories(productCategory);
                 Assert.NotNull(result);
             }
             catch (Exception e)
@@ -340,9 +340,9 @@ namespace ItemServiceTesting
                 ProductCategory productCategory = new ProductCategory { categoryName = categoryName };
                 List<ProductSubCategory> subCategories = new List<ProductSubCategory>();
                 var mock = new Mock<IItemRepository>();
-                mock.Setup(x => x.GetSubCategories(categoryName)).ReturnsAsync(subCategories);
+                mock.Setup(x => x.GetSubCategories(productCategory)).ReturnsAsync(subCategories);
                 ItemManager itemManager = new ItemManager(mock.Object);
-                var result = await itemManager.GetSubCategories(categoryName);
+                var result = await itemManager.GetSubCategories(productCategory);
                 Assert.IsEmpty(result);
             }
             catch (Exception e)
@@ -390,9 +390,9 @@ namespace ItemServiceTesting
                 PurchaseHistory purchase = new PurchaseHistory { buyerId = buyerId };
                 List<PurchaseHistory> products = new List<PurchaseHistory>();
                 var mock = new Mock<IItemRepository>();
-                mock.Setup(x => x.Purchase(buyerId)).ReturnsAsync(products);
+                mock.Setup(x => x.Purchase(purchase)).ReturnsAsync(products);
                 ItemManager itemManager = new ItemManager(mock.Object);
-                var result = await itemManager.Purchase(buyerId);
+                var result = await itemManager.Purchase(purchase);
                 Assert.IsNotNull(result);
             }
             catch (Exception e)
@@ -410,9 +410,9 @@ namespace ItemServiceTesting
                 PurchaseHistory purchase = new PurchaseHistory { buyerId = buyerId };
                 List<PurchaseHistory> products = new List<PurchaseHistory>();
                 var mock = new Mock<IItemRepository>();
-                mock.Setup(x => x.Purchase(buyerId)).ReturnsAsync(products);
+                mock.Setup(x => x.Purchase(purchase)).ReturnsAsync(products);
                 ItemManager itemManager = new ItemManager(mock.Object);
-                var result = await itemManager.Purchase(buyerId);
+                var result = await itemManager.Purchase(purchase);
                 Assert.IsEmpty(result);
             }
             catch (Exception e)
@@ -435,9 +435,9 @@ namespace ItemServiceTesting
                 Product product = new Product { productName = itemName };
                 List<Product> products = new List<Product>();
                 var mock = new Mock<IItemRepository>();
-                mock.Setup(x => x.Search(itemName)).ReturnsAsync(products);
+                mock.Setup(x => x.Search(product)).ReturnsAsync(products);
                 ItemManager itemManager = new ItemManager(mock.Object);
-                var result = await itemManager.Search(itemName);
+                var result = await itemManager.Search(product);
                 Assert.NotNull(result);
             }
             catch (Exception e)
@@ -455,9 +455,9 @@ namespace ItemServiceTesting
                 Product product = new Product { productName = itemName };
                 List<Product> products = new List<Product>();
                 var mock = new Mock<IItemRepository>();
-                mock.Setup(x => x.Search(itemName)).ReturnsAsync(products);
+                mock.Setup(x => x.Search(product)).ReturnsAsync(products);
                 ItemManager itemManager = new ItemManager(mock.Object);
-                var result = await itemManager.Search(itemName);
+                var result = await itemManager.Search(product);
                 Assert.IsEmpty(result);
             }
             catch (Exception e)
@@ -480,9 +480,9 @@ namespace ItemServiceTesting
                 ProductCategory product = new ProductCategory { categoryName = itemName };
                 List<Product> products = new List<Product>();
                 var mock = new Mock<IItemRepository>();
-                mock.Setup(x => x.SearchItemByCategory(itemName)).ReturnsAsync(products);
+                mock.Setup(x => x.SearchItemByCategory(product)).ReturnsAsync(products);
                 ItemManager itemManager = new ItemManager(mock.Object);
-                var result = await itemManager.SearchItemByCategory(itemName);
+                var result = await itemManager.SearchItemByCategory(product);
                 Assert.NotNull(result);
             }
             catch (Exception e)
@@ -497,10 +497,12 @@ namespace ItemServiceTesting
         {
             try
             {
+                ProductCategory product = new ProductCategory { categoryName = itemName };
+                List<Product> products = new List<Product>();
                 var mock = new Mock<IItemRepository>();
-                mock.Setup(x => x.SearchItemByCategory(itemName));
+                mock.Setup(x => x.SearchItemByCategory(product)).ReturnsAsync(products);
                 ItemManager itemManager = new ItemManager(mock.Object);
-                var result = await itemManager.SearchItemByCategory(itemName);
+                var result = await itemManager.SearchItemByCategory(product);
                 Assert.IsEmpty(result);
             }
             catch (Exception e)
@@ -523,9 +525,9 @@ namespace ItemServiceTesting
                 ProductSubCategory product = new ProductSubCategory { subCategoryName = itemName };
                 List<Product> products = new List<Product>();
                 var mock = new Mock<IItemRepository>();
-                mock.Setup(x => x.SearchItemBySubCategory(itemName)).ReturnsAsync(products);
+                mock.Setup(x => x.SearchItemBySubCategory(product)).ReturnsAsync(products);
                 ItemManager itemManager = new ItemManager(mock.Object);
-                var result = await itemManager.SearchItemBySubCategory(itemName);
+                var result = await itemManager.SearchItemBySubCategory(product);
                 Assert.NotNull(result);
             }
             catch (Exception e)
@@ -543,9 +545,9 @@ namespace ItemServiceTesting
                 ProductSubCategory product = new ProductSubCategory { subCategoryName = itemName };
                 List<Product> products = new List<Product>();
                 var mock = new Mock<IItemRepository>();
-                mock.Setup(x => x.SearchItemBySubCategory(itemName)).ReturnsAsync(products);
+                mock.Setup(x => x.SearchItemBySubCategory(product)).ReturnsAsync(products);
                 ItemManager itemManager = new ItemManager(mock.Object);
-                var result = await itemManager.SearchItemBySubCategory(itemName);
+                var result = await itemManager.SearchItemBySubCategory(product);
                 Assert.IsEmpty(result);
             }
             catch (Exception e)

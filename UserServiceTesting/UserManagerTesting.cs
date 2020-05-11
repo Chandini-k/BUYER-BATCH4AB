@@ -92,8 +92,7 @@ namespace UserServiceTesting
         {
             try
             {
-                var login = new Login { userName = userName, userPassword = password };
-                var result = await userManager.BuyerLogin(login);
+                var result = await userManager.BuyerLogin(userName, password);
                 Assert.NotNull(result);
             }
             catch (Exception e)
@@ -114,8 +113,7 @@ namespace UserServiceTesting
         {
             try
             {
-                Login login = new Login { userName = userName, userPassword = password };
-                var result = await userManager.BuyerLogin(login);
+                var result = await userManager.BuyerLogin(userName, password);
                 Assert.IsNull(result,"Invalid");
             }
             catch (Exception e)

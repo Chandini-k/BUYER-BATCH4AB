@@ -124,15 +124,15 @@ namespace ItemsService.Controllers
         /// </summary>
         /// <param name="productCategory"></param>
         /// <returns></returns>
-        [HttpPost]
-        [Route("GetSubCategory")]
-        public async Task<IActionResult> SubCategory(ProductCategory productCategory)
+        [HttpGet]
+        [Route("GetSubCategory/{categoryName}")]
+        public async Task<IActionResult> SubCategory(string categoryName)
         {
-            if(productCategory is null)
+            if(categoryName is null)
             {
                 return BadRequest();
             }
-            return Ok(await _iitemManager.GetSubCategories(productCategory));
+            return Ok(await _iitemManager.GetSubCategories(categoryName));
         }
         /// <summary>
         /// Items Prices in sorted order
@@ -153,46 +153,46 @@ namespace ItemsService.Controllers
         /// </summary>
         /// <param name="purchaseHistory"></param>
         /// <returns></returns>
-        [HttpPost]
-        [Route("PurchaseHistory")]
-        public async Task<IActionResult> Purchase(PurchaseHistory purchaseHistory)
+        [HttpGet]
+        [Route("PurchaseHistory/{buyerId}")]
+        public async Task<IActionResult> Purchase(int buyerId)
         {
-            return Ok(await _iitemManager.Purchase(purchaseHistory));
+            return Ok(await _iitemManager.Purchase(buyerId));
         }
         /// <summary>
         /// Search items
         /// </summary>
         /// <param name="product"></param>
         /// <returns></returns>
-        [HttpPost]
-        [Route("SearchItems")]
-        public async Task<IActionResult> SearchItem(Product product)
+        [HttpGet]
+        [Route("SearchItems/{itemName}")]
+        public async Task<IActionResult> SearchItem(string itemName)
         {
 
-            return Ok(await _iitemManager.Search(product));
+            return Ok(await _iitemManager.Search(itemName));
         }
         /// <summary>
         /// search items using category
         /// </summary>
         /// <param name="productCategory"></param>
         /// <returns></returns>
-        [HttpPost]
-        [Route("SearchItemByCategory")]
-        public async Task<IActionResult> SearchItemByCategory(ProductCategory productCategory)
+        [HttpGet]
+        [Route("SearchItemByCategory/{categoryName}")]
+        public async Task<IActionResult> SearchItemByCategory(string categoryName)
         {
-                return Ok(await _iitemManager.SearchItemByCategory(productCategory));
+                return Ok(await _iitemManager.SearchItemByCategory(categoryName));
         }
         /// <summary>
         /// Search items using Subcategory
         /// </summary>
         /// <param name="productSubCategory"></param>
         /// <returns></returns>
-        [HttpPost]
-        [Route("SearchItemBySubCategory")]
-        public async Task<IActionResult> SearchItemBySubCategory(ProductSubCategory productSubCategory)
+        [HttpGet]
+        [Route("SearchItemBySubCategory/{subCategoryName}")]
+        public async Task<IActionResult> SearchItemBySubCategory(string subCategoryName)
         {
             
-            return Ok(await _iitemManager.SearchItemBySubCategory(productSubCategory));
+            return Ok(await _iitemManager.SearchItemBySubCategory(subCategoryName));
             
         }
     }

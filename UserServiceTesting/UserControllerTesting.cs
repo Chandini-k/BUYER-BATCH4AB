@@ -2,6 +2,7 @@
 using BUYERDBENTITY.Models;
 using BUYERDBENTITY.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
@@ -19,12 +20,14 @@ namespace UserServiceTesting
         private UserController userController;
        private Mock<IUserManager> mockUserManageer;
         private Mock<ILogger<UserController>> logger;
+       private  IConfiguration configuration;
+
         [SetUp]
         public void Setup()
         {
             mockUserManageer = new Mock<IUserManager>();
             logger = new Mock<ILogger<UserController>>();
-            userController = new UserController(logger.Object,mockUserManageer.Object);
+            userController = new UserController(logger.Object,mockUserManageer.Object,configuration);
             
         }
         [Test]
@@ -59,9 +62,8 @@ namespace UserServiceTesting
         {
             try
             {
-                var login = new Login() { userName = userName, userPassword = password };
-                mockUserManageer.Setup(x => x.BuyerLogin(login));
-                var result = await userController.BuyerLogin(login) as OkObjectResult;
+                mockUserManageer.Setup(x => x.BuyerLogin(userName, password));
+                var result = await userController.BuyerLogin(userName, password) as OkObjectResult;
                 Assert.That(result,Is.Not.Null);
                 Assert.That(result.StatusCode, Is.EqualTo(200));
             }
@@ -83,9 +85,8 @@ namespace UserServiceTesting
         {
             try
             {
-                Login login = new Login() { userName = userName, userPassword = password };
-                mockUserManageer.Setup(d => d.BuyerLogin(login)).ReturnsAsync(login);
-                IActionResult result = await userController.BuyerLogin(login);
+                mockUserManageer.Setup(d => d.BuyerLogin(userName, password));
+                IActionResult result = await userController.BuyerLogin(userName, password);
                 Assert.IsNull(result);
                 Assert.IsNull(result,"Invalid User");
             }

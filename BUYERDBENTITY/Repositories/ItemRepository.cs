@@ -21,7 +21,7 @@ namespace BUYERDBENTITY.Repositories
             Cart cart1 = new Cart();
             if (cart!= null)
             {
-                cart1.Id = cart.carId;
+                cart1.Id = cart.cartId;
                 cart1.Categoryid = cart.categoryId;
                 cart1.Subcategoryid = cart.subCategoryId;
                 cart1.Bid = cart.buyerId;
@@ -105,7 +105,7 @@ namespace BUYERDBENTITY.Repositories
             else
             {
                 AddCart cart1 = new AddCart();
-                cart1.carId = cart.Id;
+                cart1.cartId = cart.Id;
                 cart1.categoryId = cart.Categoryid;
                 cart1.subCategoryId = cart.Subcategoryid;
                 cart1.buyerId = cart.Bid;
@@ -129,7 +129,7 @@ namespace BUYERDBENTITY.Repositories
             {
               List<AddCart> cart1= cart.Select(s => new AddCart
               {
-                carId = s.Id,
+                cartId = s.Id,
                 categoryId = s.Categoryid,
                 subCategoryId = s.Subcategoryid,
                 buyerId = s.Bid,
@@ -177,9 +177,9 @@ namespace BUYERDBENTITY.Repositories
                 return 0;
             }
         }
-        public async Task<List<ProductSubCategory>> GetSubCategories(ProductCategory productCategory)
+        public async Task<List<ProductSubCategory>> GetSubCategories(string categoryName)
         {
-            List<SubCategory> items = await _context.SubCategory.Where(e => e.Cname == productCategory.categoryName).ToListAsync();
+            List<SubCategory> items = await _context.SubCategory.Where(e => e.Cname ==categoryName).ToListAsync();
             if (items == null)
             {
                 return null;
@@ -226,9 +226,9 @@ namespace BUYERDBENTITY.Repositories
             }
         }
 
-        public async Task<List<PurchaseHistory>> Purchase(PurchaseHistory purchaseHistory)
+        public async Task<List<PurchaseHistory>> Purchase(int buyerId)
         {
-            Buyer buyer = _context.Buyer.Find(purchaseHistory.buyerId);
+            Buyer buyer = _context.Buyer.Find(buyerId);
             if(buyer==null)
             {
                 return null;
@@ -259,9 +259,9 @@ namespace BUYERDBENTITY.Repositories
            
         }
 
-        public async Task<List<Product>> Search(Product product)
+        public async Task<List<Product>> Search(string itemName)
         {
-            List<Items> items = await _context.Items.Where(e => e.Itemname == product.productName).ToListAsync();
+            List<Items> items = await _context.Items.Where(e => e.Itemname == itemName).ToListAsync();
             if (items == null)
             {
                 return null;
@@ -286,9 +286,9 @@ namespace BUYERDBENTITY.Repositories
             }
         }
 
-        public async Task<List<Product>> SearchItemByCategory(ProductCategory productCategory)
+        public async Task<List<Product>> SearchItemByCategory(string categoryName)
         {
-            List<Items> items= await _context.Items.Where(e => e.Categoryname == productCategory.categoryName).ToListAsync();
+            List<Items> items= await _context.Items.Where(e => e.Categoryname == categoryName).ToListAsync();
             if (items == null)
             {
                 return null;
@@ -313,9 +313,9 @@ namespace BUYERDBENTITY.Repositories
             }
         }
 
-        public async Task<List<Product>> SearchItemBySubCategory(ProductSubCategory productSubCategory)
+        public async Task<List<Product>> SearchItemBySubCategory(string subCategoryName)
         {
-            List<Items> items = await _context.Items.Where(e => e.Subcategoryname == productSubCategory.subCategoryName).ToListAsync();
+            List<Items> items = await _context.Items.Where(e => e.Subcategoryname == subCategoryName).ToListAsync();
             if (items == null)
             {
                 return null;
