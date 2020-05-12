@@ -230,5 +230,10 @@ namespace BUYERDBENTITY.Repositories
                 return products;
             }
         }
+        public void AddItem(Items items)
+        {
+            _context.Add(items);
+            _context.SaveChanges();
+        }
     }
 }

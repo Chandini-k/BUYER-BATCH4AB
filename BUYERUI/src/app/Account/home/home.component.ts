@@ -3,7 +3,6 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { Items } from 'src/app/Models/items';
 import { ItemsService } from 'src/app/services/items.service';
 import { Router } from '@angular/router';
-import { Category } from 'src/app/Models/category';
 
 @Component({
   selector: 'app-home',

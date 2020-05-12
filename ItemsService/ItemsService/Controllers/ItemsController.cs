@@ -147,5 +147,19 @@ namespace ItemsService.Controllers
 
             return Ok(await _iitemManager.Search(itemName));
         }
+        [HttpPost]
+        [Route("AddItem")]
+        public IActionResult Add(Items item)
+        {
+            try
+            {
+                _iitemManager.AddItem(item);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return NotFound(e.Message);
+            }
+        }
     }
 }

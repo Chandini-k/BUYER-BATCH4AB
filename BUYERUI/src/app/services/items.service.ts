@@ -3,6 +3,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Purchasehistory } from '../Models/purchasehistory';
 import { Cart } from '../Models/cart';
+import { Items } from '../Models/items';
 const Requestheaders={headers:new HttpHeaders({
   'Content-Type':'application/json',
   'Authorization':'Bearer'+localStorage.getItem('token')

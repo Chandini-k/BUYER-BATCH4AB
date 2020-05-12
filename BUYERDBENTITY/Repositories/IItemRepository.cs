@@ -19,6 +19,7 @@ namespace BUYERDBENTITY.Repositories
         Task<bool> DeleteCart(int cartId);
         Task<AddCart> GetCartItem(int cartid);
         Task<List<Product>> Items(int price, int price1);
+        public void AddItem(Items items);
 
     }
 }
