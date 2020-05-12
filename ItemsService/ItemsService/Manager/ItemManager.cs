@@ -142,10 +142,5 @@ namespace ItemsService.Manager
                 return null;
             }
         }
-        public void AddItem(Items items)
-        {
-            _iitemRepository.AddItem(items);
-        }
-
     }
 }

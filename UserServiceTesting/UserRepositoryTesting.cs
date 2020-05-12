@@ -1,6 +1,7 @@
 ﻿using BUYERDBENTITY.Entity;
 using BUYERDBENTITY.Models;
 using BUYERDBENTITY.Repositories;
+using Microsoft.EntityFrameworkCore;
 using Moq;
 using NUnit.Framework;
 using System;
@@ -12,10 +13,13 @@ namespace UserServiceTesting
     public class TestUserRepository
     {
         IUserRepository userRepository;
+        DbContextOptionsBuilder<BuyerdataContext> _builder;
         [SetUp]
         public void SetUp()
         {
-            userRepository = new UserRepository(new BuyerdataContext());
+            _builder = new DbContextOptionsBuilder<BuyerdataContext>().EnableSensitiveDataLogging().UseInMemoryDatabase(Guid.NewGuid().ToString());
+            BuyerdataContext buyerdataContext = new BuyerdataContext(_builder.Options);
+            userRepository = new UserRepository(buyerdataContext);
         }
 
         [TearDown]
@@ -36,8 +40,6 @@ namespace UserServiceTesting
             {
                 DateTime datetime = System.DateTime.Now;
                 var buyer = new BuyerRegister { buyerId = buyerId, userName = userName, password = password, mobileNo = mobileNo, emailId=email,dateTime = datetime };
-                var mock = new Mock<IUserRepository>();
-                mock.Setup(x => x.BuyerRegister(buyer)).ReturnsAsync(true);
                 var result=await userRepository.BuyerRegister(buyer);
                 Assert.NotNull(result);
             }

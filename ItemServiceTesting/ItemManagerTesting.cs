@@ -15,11 +15,13 @@ namespace ItemServiceTesting
     public class ItemManagerTesting
     {
         IItemManager iitemManager;
+        private Mock<IItemRepository> mockItemManager;
 
         [SetUp]
         public void SetUp()
         {
-            iitemManager = new ItemManager(new ItemRepository(new BuyerdataContext()));
+            mockItemManager = new Mock<IItemRepository>();
+            iitemManager = new ItemManager(mockItemManager.Object);
         }
         [TearDown]
         public void TearDown()
@@ -38,10 +40,8 @@ namespace ItemServiceTesting
             try
             {
                 var cart = new AddCart { cartId = cartId, buyerId = buyerId, itemId = itemid, price = price, itemName = itemName, description = description, stockno = stockno, remarks = remarks, imageName = imageName };
-                var mock = new Mock<IItemRepository>();
-                mock.Setup(x => x.AddToCart(cart)).ReturnsAsync(true);
-                ItemManager itemManager = new ItemManager(mock.Object);
-                var result = await itemManager.AddToCart(cart);
+                mockItemManager.Setup(x => x.AddToCart(cart)).ReturnsAsync(true);
+                var result = await iitemManager.AddToCart(cart);
                 Assert.NotNull(result);
             }
             catch (Exception e)
@@ -62,10 +62,8 @@ namespace ItemServiceTesting
             {
                 DateTime dateTime = System.DateTime.Now;
                 var purchaseHistory = new PurchaseHistory { purchaseId = purchaseId, buyerId = buyerId, itemId = itemId, transactionType = transactionType, noOfItems = noofitems, remarks = remarks, transactionStatus = transactionStatus, dateTime = dateTime };
-                var mock = new Mock<IItemRepository>();
-                mock.Setup(x => x.BuyItem(purchaseHistory)).ReturnsAsync(true);
-                ItemManager itemManager = new ItemManager(mock.Object);
-                var result = await itemManager.BuyItem(purchaseHistory);
+                mockItemManager.Setup(x => x.BuyItem(purchaseHistory)).ReturnsAsync(true);
+                var result = await iitemManager.BuyItem(purchaseHistory);
                 Assert.NotNull(result);
             }
             catch (Exception e)
@@ -86,10 +84,8 @@ namespace ItemServiceTesting
         {
             try
             {
-                var mock = new Mock<IItemRepository>();
-                mock.Setup(x => x.CheckCartItem(buyerid, itemid)).ReturnsAsync(true);
-                ItemManager itemManager = new ItemManager(mock.Object);
-                var result = await itemManager.CheckCartItem(buyerid, itemid);
+                mockItemManager.Setup(x => x.CheckCartItem(buyerid, itemid)).ReturnsAsync(true);
+                var result = await iitemManager.CheckCartItem(buyerid, itemid);
                 Assert.True(result);
             }
             catch (Exception e)
@@ -104,10 +100,8 @@ namespace ItemServiceTesting
         {
             try
             {
-                var mock = new Mock<IItemRepository>();
-                mock.Setup(x => x.CheckCartItem(buyerid, itemid)).ReturnsAsync(false);
-                ItemManager itemManager = new ItemManager(mock.Object);
-                var result = await itemManager.CheckCartItem(buyerid, itemid);
+                mockItemManager.Setup(x => x.CheckCartItem(buyerid, itemid)).ReturnsAsync(false);
+                var result = await iitemManager.CheckCartItem(buyerid, itemid);
                 Assert.False(result);
             }
             catch (Exception e)
@@ -127,10 +121,8 @@ namespace ItemServiceTesting
         {
             try
             {
-                var mock = new Mock<IItemRepository>();
-                mock.Setup(x => x.DeleteCart(cartId)).ReturnsAsync(true);
-                ItemManager itemManager = new ItemManager(mock.Object);
-                var result = await itemManager.DeleteCart(cartId);
+                mockItemManager.Setup(x => x.DeleteCart(cartId)).ReturnsAsync(true);
+                var result = await iitemManager.DeleteCart(cartId);
                 Assert.True(result);
             }
             catch (Exception e)
@@ -145,10 +137,8 @@ namespace ItemServiceTesting
         {
             try
             {
-                var mock = new Mock<IItemRepository>();
-                mock.Setup(x => x.DeleteCart(cartId)).ReturnsAsync(false);
-                ItemManager itemManager = new ItemManager(mock.Object);
-                var result = await itemManager.DeleteCart(cartId);
+                mockItemManager.Setup(x => x.DeleteCart(cartId)).ReturnsAsync(false);
+                var result = await iitemManager.DeleteCart(cartId);
                 Assert.False(result);
             }
             catch (Exception e)
@@ -169,10 +159,8 @@ namespace ItemServiceTesting
             try
             {
                 AddCart cart = new AddCart();
-                var mock = new Mock<IItemRepository>();
-                mock.Setup(x => x.GetCartItem(cartId)).ReturnsAsync(cart);
-                ItemManager itemManager = new ItemManager(mock.Object);
-                var result = await itemManager.GetCartItem(cartId);
+                mockItemManager.Setup(x => x.GetCartItem(cartId)).ReturnsAsync(cart);
+                var result = await iitemManager.GetCartItem(cartId);
                 Assert.NotNull(result);
             }
             catch (Exception e)
@@ -187,10 +175,8 @@ namespace ItemServiceTesting
         {
             try
             {
-                var mock = new Mock<IItemRepository>();
-                mock.Setup(x => x.GetCartItem(cartId));
-                ItemManager itemManager = new ItemManager(mock.Object);
-                var result = await itemManager.GetCartItem(cartId);
+                mockItemManager.Setup(x => x.GetCartItem(cartId));
+                var result = await iitemManager.GetCartItem(cartId);
                 Assert.IsNull(result, "Not found");
             }
             catch (Exception e)
@@ -211,10 +197,8 @@ namespace ItemServiceTesting
             try
             {
                 List<AddCart> cart = new List<AddCart>();
-                var mock = new Mock<IItemRepository>();
-                mock.Setup(x => x.GetCarts(buyerId)).ReturnsAsync(cart);
-                ItemManager itemManager = new ItemManager(mock.Object);
-                var result = await itemManager.GetCarts(buyerId);
+                mockItemManager.Setup(x => x.GetCarts(buyerId)).ReturnsAsync(cart);
+                var result = await iitemManager.GetCarts(buyerId);
                 Assert.NotNull(result);
             }
             catch (Exception e)
@@ -230,10 +214,8 @@ namespace ItemServiceTesting
             try
             {
                 List<AddCart> cart = new List<AddCart>();
-                var mock = new Mock<IItemRepository>();
-                mock.Setup(x => x.GetCarts(buyerId)).ReturnsAsync(cart);
-                ItemManager itemManager = new ItemManager(mock.Object);
-                var result = await itemManager.GetCarts(buyerId);
+                mockItemManager.Setup(x => x.GetCarts(buyerId)).ReturnsAsync(cart);
+                var result = await iitemManager.GetCarts(buyerId);
                 Assert.IsEmpty(result, "No Items");
             }
             catch (Exception e)
@@ -253,10 +235,8 @@ namespace ItemServiceTesting
         {
             try
             {
-                var mock = new Mock<IItemRepository>();
-                mock.Setup(x => x.GetCount(buyerId)).ReturnsAsync(1);
-                ItemManager itemManager = new ItemManager(mock.Object);
-                var result = await itemManager.GetCount(buyerId);
+                mockItemManager.Setup(x => x.GetCount(buyerId)).ReturnsAsync(1);
+                var result = await iitemManager.GetCount(buyerId);
                 Assert.NotZero(result);
             }
             catch (Exception e)
@@ -271,10 +251,8 @@ namespace ItemServiceTesting
         {
             try
             {
-                var mock = new Mock<IItemRepository>();
-                mock.Setup(x => x.GetCount(buyerId));
-                ItemManager itemManager = new ItemManager(mock.Object);
-                var result = await itemManager.GetCount(buyerId);
+                mockItemManager.Setup(x => x.GetCount(buyerId));
+                var result = await iitemManager.GetCount(buyerId);
                 Assert.Zero(result, "No cart items");
             }
             catch (Exception e)
@@ -296,10 +274,8 @@ namespace ItemServiceTesting
             try
             {
                 List<Product> products = new List<Product>();
-                var mock = new Mock<IItemRepository>();
-                mock.Setup(x => x.Items(price, price1)).ReturnsAsync(products);
-                ItemManager itemManager = new ItemManager(mock.Object);
-                var result = await itemManager.Items(price, price1);
+                mockItemManager.Setup(x => x.Items(price, price1)).ReturnsAsync(products);
+                var result = await iitemManager.Items(price, price1);
                 Assert.NotNull(result);
             }
             catch (Exception e)
@@ -319,12 +295,9 @@ namespace ItemServiceTesting
         {
             try
             {
-                PurchaseHistory purchase = new PurchaseHistory { buyerId = buyerId };
                 List<PurchaseHistory> products = new List<PurchaseHistory>();
-                var mock = new Mock<IItemRepository>();
-                mock.Setup(x => x.Purchase(buyerId)).ReturnsAsync(products);
-                ItemManager itemManager = new ItemManager(mock.Object);
-                var result = await itemManager.Purchase(buyerId);
+                mockItemManager.Setup(x => x.Purchase(buyerId)).ReturnsAsync(products);
+                var result = await iitemManager.Purchase(buyerId);
                 Assert.IsNotNull(result);
             }
             catch (Exception e)
@@ -339,12 +312,9 @@ namespace ItemServiceTesting
         {
             try
             {
-                PurchaseHistory purchase = new PurchaseHistory { buyerId = buyerId };
                 List<PurchaseHistory> products = new List<PurchaseHistory>();
-                var mock = new Mock<IItemRepository>();
-                mock.Setup(x => x.Purchase(buyerId)).ReturnsAsync(products);
-                ItemManager itemManager = new ItemManager(mock.Object);
-                var result = await itemManager.Purchase(buyerId);
+                mockItemManager.Setup(x => x.Purchase(buyerId)).ReturnsAsync(products);
+                var result = await iitemManager.Purchase(buyerId);
                 Assert.IsEmpty(result);
             }
             catch (Exception e)
@@ -364,12 +334,9 @@ namespace ItemServiceTesting
         {
             try
             {
-                Product product = new Product { productName = itemName };
                 List<Product> products = new List<Product>();
-                var mock = new Mock<IItemRepository>();
-                mock.Setup(x => x.Search(itemName)).ReturnsAsync(products);
-                ItemManager itemManager = new ItemManager(mock.Object);
-                var result = await itemManager.Search(itemName);
+                mockItemManager.Setup(x => x.Search(itemName)).ReturnsAsync(products);
+                var result = await iitemManager.Search(itemName);
                 Assert.NotNull(result);
             }
             catch (Exception e)
@@ -384,12 +351,9 @@ namespace ItemServiceTesting
         {
             try
             {
-                Product product = new Product { productName = itemName };
                 List<Product> products = new List<Product>();
-                var mock = new Mock<IItemRepository>();
-                mock.Setup(x => x.Search(itemName)).ReturnsAsync(products);
-                ItemManager itemManager = new ItemManager(mock.Object);
-                var result = await itemManager.Search(itemName);
+                mockItemManager.Setup(x => x.Search(itemName)).ReturnsAsync(products);
+                var result = await iitemManager.Search(itemName);
                 Assert.IsEmpty(result);
             }
             catch (Exception e)

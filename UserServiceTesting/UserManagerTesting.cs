@@ -12,10 +12,12 @@ namespace UserServiceTesting
     public class UserManagerTesting
     {
         IUserManager userManager;
+        private Mock<IUserRepository> mockUserManager;
         [SetUp]
         public void SetUp()
         {
-            userManager = new UserManager(new UserRepository(new BuyerdataContext()));
+            mockUserManager = new Mock<IUserRepository>();
+            userManager = new UserManager(mockUserManager.Object);
         }
 
         [TearDown]
@@ -36,10 +38,8 @@ namespace UserServiceTesting
             {
                 DateTime datetime = System.DateTime.Now;
                 var buyer = new BuyerRegister { buyerId = buyerId, userName = userName, password = password, mobileNo = mobileNo, emailId = email, dateTime = datetime };
-                var mock = new Mock<IUserRepository>();
-                mock.Setup(x => x.BuyerRegister(buyer)).ReturnsAsync(true);
-                UserManager userManager1 = new UserManager(mock.Object);
-                var result = await userManager1.BuyerRegister(buyer);
+                mockUserManager.Setup(x => x.BuyerRegister(buyer)).ReturnsAsync(true);
+                var result = await userManager.BuyerRegister(buyer);
                 Assert.IsNotNull(result);
                 Assert.AreEqual(true, result);
             }
@@ -67,10 +67,8 @@ namespace UserServiceTesting
             {
                 DateTime datetime = System.DateTime.Now;
                 var buyer = new BuyerRegister { buyerId = buyerId, userName = userName, password = password, mobileNo = mobileNo, emailId = email, dateTime = datetime };
-                var mock = new Mock<IUserRepository>();
-                mock.Setup(x => x.BuyerRegister(buyer)).ReturnsAsync(false);
-                UserManager userManager1 = new UserManager(mock.Object);
-                var result = await userManager1.BuyerRegister(buyer);
+                mockUserManager.Setup(x => x.BuyerRegister(buyer)).ReturnsAsync(false);
+                var result = await userManager.BuyerRegister(buyer);
                 Assert.IsNotNull(result);
                 Assert.AreEqual(false, result);
             }

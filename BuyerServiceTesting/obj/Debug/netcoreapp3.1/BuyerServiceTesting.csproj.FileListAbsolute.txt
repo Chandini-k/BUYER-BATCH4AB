@@ -435,10 +435,11 @@ C:\BUYERPROJECT\BuyerServiceTesting\bin\Debug\netcoreapp3.1\BuyerService.dll
 C:\BUYERPROJECT\BuyerServiceTesting\bin\Debug\netcoreapp3.1\BUYERDBENTITY.pdb
 C:\BUYERPROJECT\BuyerServiceTesting\bin\Debug\netcoreapp3.1\BuyerService.pdb
 C:\BUYERPROJECT\BuyerServiceTesting\obj\Debug\netcoreapp3.1\BuyerServiceTesting.csprojAssemblyReference.cache
-C:\BUYERPROJECT\BuyerServiceTesting\obj\Debug\netcoreapp3.1\BuyerServiceTesting.csproj.CoreCompileInputs.cache
 C:\BUYERPROJECT\BuyerServiceTesting\obj\Debug\netcoreapp3.1\BuyerServiceTesting.AssemblyInfoInputs.cache
 C:\BUYERPROJECT\BuyerServiceTesting\obj\Debug\netcoreapp3.1\BuyerServiceTesting.AssemblyInfo.cs
 C:\BUYERPROJECT\BuyerServiceTesting\obj\Debug\netcoreapp3.1\BuyerServiceTesting.csproj.CopyComplete
 C:\BUYERPROJECT\BuyerServiceTesting\obj\Debug\netcoreapp3.1\BuyerServiceTesting.dll
 C:\BUYERPROJECT\BuyerServiceTesting\obj\Debug\netcoreapp3.1\BuyerServiceTesting.pdb
 C:\BUYERPROJECT\BuyerServiceTesting\obj\Debug\netcoreapp3.1\BuyerServiceTesting.genruntimeconfig.cache
+C:\BUYERPROJECT\BuyerServiceTesting\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.InMemory.dll
+C:\BUYERPROJECT\BuyerServiceTesting\obj\Debug\netcoreapp3.1\BuyerServiceTesting.csproj.CoreCompileInputs.cache

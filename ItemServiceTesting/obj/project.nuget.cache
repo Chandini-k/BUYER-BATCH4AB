@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "g5/dAKY7EJc7PHNXkxjGiMIkB8onmAlMCtvyhoY+Ra6i9VoT2eQ4hlHw5mpItbJDxhglMTwUDUoOp8KvAXvf1g==",
+  "dgSpecHash": "RbqAJ3rzJ/00dAvHHSsfhWfTFCcpE+j3SxDIFXoZ2dnS8VGoRO+zATLgTO+oDtDG63HHXsdjTzGu1cEeEBms2g==",
   "success": true,
   "projectFilePath": "C:\\BUYERPROJECT\\ItemServiceTesting\\ItemServiceTesting.csproj",
   "expectedPackageFiles": [
@@ -63,6 +63,7 @@
     "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\3.1.3\\microsoft.entityframeworkcore.abstractions.3.1.3.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\3.1.3\\microsoft.entityframeworkcore.analyzers.3.1.3.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.entityframeworkcore.design\\3.1.3\\microsoft.entityframeworkcore.design.3.1.3.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.entityframeworkcore.inmemory\\3.1.3\\microsoft.entityframeworkcore.inmemory.3.1.3.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\3.1.3\\microsoft.entityframeworkcore.relational.3.1.3.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\3.1.3\\microsoft.entityframeworkcore.sqlserver.3.1.3.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\3.1.3\\microsoft.entityframeworkcore.tools.3.1.3.nupkg.sha512",

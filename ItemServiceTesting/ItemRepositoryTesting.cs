@@ -1,6 +1,7 @@
 ﻿using BUYERDBENTITY.Entity;
 using BUYERDBENTITY.Models;
 using BUYERDBENTITY.Repositories;
+using Microsoft.EntityFrameworkCore;
 using Moq;
 using NUnit.Framework;
 using System;
@@ -14,11 +15,14 @@ namespace ItemServiceTesting
     public class ItemRepositoryTesting
     {
         IItemRepository iitemRepository;
+        DbContextOptionsBuilder<BuyerdataContext> _builder;
 
         [SetUp]
         public void SetUp()
         {
-            iitemRepository = new ItemRepository(new BuyerdataContext());
+            _builder = new DbContextOptionsBuilder<BuyerdataContext>().EnableSensitiveDataLogging().UseInMemoryDatabase(Guid.NewGuid().ToString());
+            BuyerdataContext buyerdataContext = new BuyerdataContext(_builder.Options);
+            iitemRepository = new ItemRepository(buyerdataContext);
         }
         [TearDown]
         public void TearDown()

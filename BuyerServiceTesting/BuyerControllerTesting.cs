@@ -41,10 +41,9 @@ namespace BuyerServiceTesting
         {
             try
             {
-                BuyerData buyer = new BuyerData();
-                mockBuyerManager.Setup(x => x.GetBuyerProfile(buyerId)).ReturnsAsync(buyer);
+                mockBuyerManager.Setup(x => x.GetBuyerProfile(buyerId));
                 var result = await buyerController.GetBuyerProfile(buyerId);
-                Assert.NotNull(result);
+                Assert.That(result, Is.Not.Null);
             }
             catch (Exception e)
             {
@@ -62,7 +61,7 @@ namespace BuyerServiceTesting
         {
             try
             {
-                mockBuyerManager.Setup(d => d.GetBuyerProfile(buyerId));
+                mockBuyerManager.Setup(d => d.GetBuyerProfile(buyerId)).ReturnsAsync((BuyerData)(null));
                 var result = await buyerController.GetBuyerProfile(buyerId) as OkResult;
                 Assert.That(result, Is.Null);
                 Assert.That(result.StatusCode, Is.EqualTo(200));
@@ -81,9 +80,9 @@ namespace BuyerServiceTesting
         {
             try
             {
-                mockBuyerManager.Setup(x => x.EditBuyerProfile(It.IsAny<BuyerData>())).ReturnsAsync(new Boolean());
+                mockBuyerManager.Setup(x => x.EditBuyerProfile(It.IsAny<BuyerData>())).ReturnsAsync(new bool());
                 BuyerData buyer = new BuyerData() { buyerId = 6743, userName = "anvi", password = "abcdefg@", emailId = "anvi@gmail.com", mobileNo = "9873452567", dateTime = System.DateTime.Now };
-                var result = await buyerController.EditBuyerProfile(buyer) as OkObjectResult;
+                var result = await buyerController.EditBuyerProfile(buyer) as OkResult;
                 Assert.That(result, Is.Not.Null);
                 Assert.That(result.StatusCode, Is.EqualTo(200));
             }
@@ -101,10 +100,10 @@ namespace BuyerServiceTesting
         {
             try
             {
-                mockBuyerManager.Setup(x => x.EditBuyerProfile(It.IsAny<BuyerData>())).ReturnsAsync(new Boolean());
+                mockBuyerManager.Setup(x => x.EditBuyerProfile(It.IsAny<BuyerData>())).ReturnsAsync(new bool());
                 BuyerData buyer = new BuyerData() { buyerId = 6746, userName = "anvi", password = "abcdefg@", emailId = "anvi@gmail.com", mobileNo = "9873452567", dateTime = System.DateTime.Now };
-                var result = await buyerController.EditBuyerProfile(buyer) as OkObjectResult;
-                Assert.That(result, Is.Not.Null);
+                var result = await buyerController.EditBuyerProfile(buyer) as OkResult;
+                Assert.That(result, Is.Null);
                 Assert.That(result.StatusCode, Is.EqualTo(200));
             }
             catch (Exception e)

@@ -430,7 +430,6 @@ C:\BUYERPROJECT\ItemServiceTesting\bin\Debug\netcoreapp3.1\ItemsService.dll
 C:\BUYERPROJECT\ItemServiceTesting\bin\Debug\netcoreapp3.1\BUYERDBENTITY.pdb
 C:\BUYERPROJECT\ItemServiceTesting\bin\Debug\netcoreapp3.1\ItemsService.pdb
 C:\BUYERPROJECT\ItemServiceTesting\obj\Debug\netcoreapp3.1\ItemServiceTesting.csprojAssemblyReference.cache
-C:\BUYERPROJECT\ItemServiceTesting\obj\Debug\netcoreapp3.1\ItemServiceTesting.csproj.CoreCompileInputs.cache
 C:\BUYERPROJECT\ItemServiceTesting\obj\Debug\netcoreapp3.1\ItemServiceTesting.AssemblyInfoInputs.cache
 C:\BUYERPROJECT\ItemServiceTesting\obj\Debug\netcoreapp3.1\ItemServiceTesting.AssemblyInfo.cs
 C:\BUYERPROJECT\ItemServiceTesting\obj\Debug\netcoreapp3.1\ItemServiceTesting.csproj.CopyComplete
