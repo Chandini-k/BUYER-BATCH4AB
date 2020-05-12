@@ -10,8 +10,8 @@ namespace BUYERDBENTITY.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        private readonly BuyerContext _context;
-        public UserRepository(BuyerContext context)
+        private readonly BuyerdataContext _context;
+        public UserRepository(BuyerdataContext context)
         {
             _context = context;
         }
@@ -19,9 +19,9 @@ namespace BUYERDBENTITY.Repositories
         public async Task<bool> BuyerRegister(BuyerRegister buyer)
         {
             Buyer buyer1 = new Buyer();
-            if(buyer!=null)
+            if (buyer != null)
             {
-                buyer1.Bid = buyer.buyerId;
+                buyer1.Buyerid = buyer.buyerId;
                 buyer1.Username = buyer.userName;
                 buyer1.Password = buyer.password;
                 buyer1.Mobileno = buyer.mobileNo;
@@ -40,16 +40,16 @@ namespace BUYERDBENTITY.Repositories
             }
         }
 
-        public async Task<Login> BuyerLogin(string username,string password)
+        public async Task<Login> BuyerLogin(string username, string password)
         {
-             Buyer buyer = await _context.Buyer.SingleOrDefaultAsync(e => e.Username ==username && e.Password == password);
-            if (buyer!=null)
+            Buyer buyer = await _context.Buyer.SingleOrDefaultAsync(e => e.Username == username && e.Password == password);
+            if (buyer != null)
             {
                 return new Login
                 {
                     userName = buyer.Username,
                     userPassword = buyer.Password,
-                    buyerId=buyer.Bid,
+                    buyerId = buyer.Buyerid,
                 };
             }
             else

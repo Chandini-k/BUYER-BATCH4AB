@@ -19,7 +19,7 @@ namespace ItemServiceTesting
         [SetUp]
         public void SetUp()
         {
-            iitemManager = new ItemManager(new ItemRepository(new BuyerContext()));
+            iitemManager = new ItemManager(new ItemRepository(new BuyerdataContext()));
         }
         [TearDown]
         public void TearDown()
@@ -33,11 +33,11 @@ namespace ItemServiceTesting
         [Test]
         [TestCase(123, 856, 401, 1235, 662, 50, "atta", "flour", "342", "good", "atta.img")]
         [Description("Add to cart testing")]
-        public async Task AddToCart_Successfull(int cartId, int categoryId, int subCategoryId, int buyerId, int itemid, int price, string itemName, string description, int stockno, string remarks, string imageName)
+        public async Task AddToCart_Successfull(int cartId, int buyerId, int itemid, int price, string itemName, string description, int stockno, string remarks, string imageName)
         {
             try
             {
-                var cart = new AddCart { cartId = cartId, categoryId = categoryId, subCategoryId = subCategoryId, buyerId = buyerId, itemId = itemid, price = price, itemName = itemName, description = description, stockno = stockno, remarks = remarks, imageName = imageName };
+                var cart = new AddCart { cartId = cartId, buyerId = buyerId, itemId = itemid, price = price, itemName = itemName, description = description, stockno = stockno, remarks = remarks, imageName = imageName };
                 var mock = new Mock<IItemRepository>();
                 mock.Setup(x => x.AddToCart(cart)).ReturnsAsync(true);
                 ItemManager itemManager = new ItemManager(mock.Object);
@@ -87,7 +87,7 @@ namespace ItemServiceTesting
             try
             {
                 var mock = new Mock<IItemRepository>();
-                mock.Setup(x => x.CheckCartItem(buyerid,itemid)).ReturnsAsync(true);
+                mock.Setup(x => x.CheckCartItem(buyerid, itemid)).ReturnsAsync(true);
                 ItemManager itemManager = new ItemManager(mock.Object);
                 var result = await itemManager.CheckCartItem(buyerid, itemid);
                 Assert.True(result);
@@ -105,7 +105,7 @@ namespace ItemServiceTesting
             try
             {
                 var mock = new Mock<IItemRepository>();
-                mock.Setup(x => x.CheckCartItem(buyerid,itemid)).ReturnsAsync(false);
+                mock.Setup(x => x.CheckCartItem(buyerid, itemid)).ReturnsAsync(false);
                 ItemManager itemManager = new ItemManager(mock.Object);
                 var result = await itemManager.CheckCartItem(buyerid, itemid);
                 Assert.False(result);
@@ -242,28 +242,6 @@ namespace ItemServiceTesting
             }
         }
         /// <summary>
-        /// get categories
-        /// </summary>
-        /// <returns></returns>
-        [Test]
-        [Description("testing categories")]
-        public async Task GetCategories_Successfull()
-        {
-            try
-            {
-                List<ProductCategory> categories = new List<ProductCategory>();
-                var mock = new Mock<IItemRepository>();
-                mock.Setup(x => x.GetCategories()).ReturnsAsync(categories);
-                ItemManager itemManager = new ItemManager(mock.Object);
-                var result = await itemManager.GetCategories();
-                Assert.NotNull(result);
-            }
-            catch (Exception e)
-            {
-                Assert.Fail(e.Message);
-            }
-        }
-        /// <summary>
         /// get buyer cart count
         /// </summary>
         /// <param name="buyerId"></param>
@@ -274,7 +252,7 @@ namespace ItemServiceTesting
         public async Task GetCartCount_Successfull(int buyerId)
         {
             try
-            { 
+            {
                 var mock = new Mock<IItemRepository>();
                 mock.Setup(x => x.GetCount(buyerId)).ReturnsAsync(1);
                 ItemManager itemManager = new ItemManager(mock.Object);
@@ -305,52 +283,6 @@ namespace ItemServiceTesting
             }
         }
         /// <summary>
-        /// get subcategories
-        /// </summary>
-        /// <param name="categoryName"></param>
-        /// <returns></returns>
-        [Test]
-        [TestCase("fruits vegetables")]
-        [Description("testing getsubcategories")]
-        public async Task GetSubCategories_Successfull(string categoryName)
-        {
-            try
-            {
-                ProductCategory productCategory = new ProductCategory { categoryName = categoryName };
-                List<ProductSubCategory> subCategories = new List<ProductSubCategory>();
-                var mock = new Mock<IItemRepository>();
-                mock.Setup(x => x.GetSubCategories(categoryName)).ReturnsAsync(subCategories);
-                ItemManager itemManager = new ItemManager(mock.Object);
-                var result = await itemManager.GetSubCategories(categoryName);
-                Assert.NotNull(result);
-            }
-            catch (Exception e)
-            {
-                Assert.Fail(e.Message);
-            }
-        }
-        [Test]
-        [TestCase("fruits")]
-        [Description("testing getsubcategories")]
-        public async Task GetSubCategories_UnSuccessfull(string categoryName)
-        {
-            try
-            {
-
-                ProductCategory productCategory = new ProductCategory { categoryName = categoryName };
-                List<ProductSubCategory> subCategories = new List<ProductSubCategory>();
-                var mock = new Mock<IItemRepository>();
-                mock.Setup(x => x.GetSubCategories(categoryName)).ReturnsAsync(subCategories);
-                ItemManager itemManager = new ItemManager(mock.Object);
-                var result = await itemManager.GetSubCategories(categoryName);
-                Assert.IsEmpty(result);
-            }
-            catch (Exception e)
-            {
-                Assert.Fail(e.Message);
-            }
-        }
-        /// <summary>
         /// sort items by price
         /// </summary>
         /// <param name="price"></param>
@@ -365,7 +297,7 @@ namespace ItemServiceTesting
             {
                 List<Product> products = new List<Product>();
                 var mock = new Mock<IItemRepository>();
-                mock.Setup(x => x.Items(price,price1)).ReturnsAsync(products);
+                mock.Setup(x => x.Items(price, price1)).ReturnsAsync(products);
                 ItemManager itemManager = new ItemManager(mock.Object);
                 var result = await itemManager.Items(price, price1);
                 Assert.NotNull(result);
@@ -458,94 +390,6 @@ namespace ItemServiceTesting
                 mock.Setup(x => x.Search(itemName)).ReturnsAsync(products);
                 ItemManager itemManager = new ItemManager(mock.Object);
                 var result = await itemManager.Search(itemName);
-                Assert.IsEmpty(result);
-            }
-            catch (Exception e)
-            {
-                Assert.Fail(e.Message);
-            }
-        }
-        /// <summary>
-        /// search items by category
-        /// </summary>
-        /// <param name="itemName"></param>
-        /// <returns></returns>
-        [Test]
-        [TestCase("fruits vegetables")]
-        [Description("testing search items")]
-        public async Task SearchItemsByCategory_Successfull(string itemName)
-        {
-            try
-            {
-                ProductCategory product = new ProductCategory { categoryName = itemName };
-                List<Product> products = new List<Product>();
-                var mock = new Mock<IItemRepository>();
-                mock.Setup(x => x.SearchItemByCategory(itemName)).ReturnsAsync(products);
-                ItemManager itemManager = new ItemManager(mock.Object);
-                var result = await itemManager.SearchItemByCategory(itemName);
-                Assert.NotNull(result);
-            }
-            catch (Exception e)
-            {
-                Assert.Fail(e.Message);
-            }
-        }
-        [Test]
-        [TestCase("choco")]
-        [Description("testing search items")]
-        public async Task SearchItemsByCategory_UnSuccessfull(string itemName)
-        {
-            try
-            {
-                var mock = new Mock<IItemRepository>();
-                mock.Setup(x => x.SearchItemByCategory(itemName));
-                ItemManager itemManager = new ItemManager(mock.Object);
-                var result = await itemManager.SearchItemByCategory(itemName);
-                Assert.IsEmpty(result);
-            }
-            catch (Exception e)
-            {
-                Assert.Fail(e.Message);
-            }
-        }
-        /// <summary>
-        /// search items by subcategory
-        /// </summary>
-        /// <param name="itemName"></param>
-        /// <returns></returns>
-        [Test]
-        [TestCase("fruits")]
-        [Description("testing search items")]
-        public async Task SearchItemsBySubCategory_Successfull(string itemName)
-        {
-            try
-            {
-                ProductSubCategory product = new ProductSubCategory { subCategoryName = itemName };
-                List<Product> products = new List<Product>();
-                var mock = new Mock<IItemRepository>();
-                mock.Setup(x => x.SearchItemBySubCategory(itemName)).ReturnsAsync(products);
-                ItemManager itemManager = new ItemManager(mock.Object);
-                var result = await itemManager.SearchItemBySubCategory(itemName);
-                Assert.NotNull(result);
-            }
-            catch (Exception e)
-            {
-                Assert.Fail(e.Message);
-            }
-        }
-        [Test]
-        [TestCase("choco")]
-        [Description("testing search items")]
-        public async Task SearchItemsSubCategory_UnSuccessfull(string itemName)
-        {
-            try
-            {
-                ProductSubCategory product = new ProductSubCategory { subCategoryName = itemName };
-                List<Product> products = new List<Product>();
-                var mock = new Mock<IItemRepository>();
-                mock.Setup(x => x.SearchItemBySubCategory(itemName)).ReturnsAsync(products);
-                ItemManager itemManager = new ItemManager(mock.Object);
-                var result = await itemManager.SearchItemBySubCategory(itemName);
                 Assert.IsEmpty(result);
             }
             catch (Exception e)

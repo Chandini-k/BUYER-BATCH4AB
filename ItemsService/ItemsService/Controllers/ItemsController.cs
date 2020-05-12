@@ -99,16 +99,6 @@ namespace ItemsService.Controllers
             return Ok(await _iitemManager.GetCarts(buyerId));
         }
         /// <summary>
-        /// GetCategory of items
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        [Route("GetCategory")]
-        public async Task<IActionResult> GetCategory()
-        {
-            return Ok(await _iitemManager.GetCategories());
-        }
-        /// <summary>
         /// Get cart count
         /// </summary>
         /// <param name="buyerId"></param>
@@ -119,21 +109,7 @@ namespace ItemsService.Controllers
         {
             return Ok(await _iitemManager.GetCount(buyerId));
         }
-        /// <summary>
-        /// Get SubCategory
-        /// </summary>
-        /// <param name="productCategory"></param>
-        /// <returns></returns>
-        [HttpGet]
-        [Route("GetSubCategory/{categoryName}")]
-        public async Task<IActionResult> SubCategory(string categoryName)
-        {
-            if(categoryName is null)
-            {
-                return BadRequest();
-            }
-            return Ok(await _iitemManager.GetSubCategories(categoryName));
-        }
+
         /// <summary>
         /// Items Prices in sorted order
         /// </summary>
@@ -170,30 +146,6 @@ namespace ItemsService.Controllers
         {
 
             return Ok(await _iitemManager.Search(itemName));
-        }
-        /// <summary>
-        /// search items using category
-        /// </summary>
-        /// <param name="productCategory"></param>
-        /// <returns></returns>
-        [HttpGet]
-        [Route("SearchItemByCategory/{categoryName}")]
-        public async Task<IActionResult> SearchItemByCategory(string categoryName)
-        {
-                return Ok(await _iitemManager.SearchItemByCategory(categoryName));
-        }
-        /// <summary>
-        /// Search items using Subcategory
-        /// </summary>
-        /// <param name="productSubCategory"></param>
-        /// <returns></returns>
-        [HttpGet]
-        [Route("SearchItemBySubCategory/{subCategoryName}")]
-        public async Task<IActionResult> SearchItemBySubCategory(string subCategoryName)
-        {
-            
-            return Ok(await _iitemManager.SearchItemBySubCategory(subCategoryName));
-            
         }
     }
 }

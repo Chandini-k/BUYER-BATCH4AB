@@ -10,7 +10,7 @@ namespace BUYERDBENTITY.Repositories
     public interface IUserRepository
     {
         Task<bool> BuyerRegister(BuyerRegister buyer);
-        Task<Login> BuyerLogin(string username,string password);
+        Task<Login> BuyerLogin(string username, string password);
 
     }
 }

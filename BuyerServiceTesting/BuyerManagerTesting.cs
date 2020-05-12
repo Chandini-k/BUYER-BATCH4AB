@@ -15,11 +15,11 @@ namespace BuyerServiceTesting
     public class BuyerManagerTesting
     {
         IBuyerManager iBuyerManager;
-       
+
         [SetUp]
         public void SetUp()
         {
-            iBuyerManager = new BuyerManager(new BuyerRepository(new BuyerContext()));
+            iBuyerManager = new BuyerManager(new BuyerRepository(new BuyerdataContext()));
         }
 
         [TearDown]
@@ -65,7 +65,7 @@ namespace BuyerServiceTesting
                 mock.Setup(x => x.GetBuyerProfile(buyerId));
                 BuyerManager buyerManager = new BuyerManager(mock.Object);
                 var result = await buyerManager.GetBuyerProfile(buyerId);
-                Assert.IsNull(result,"Invalid User");
+                Assert.IsNull(result, "Invalid User");
             }
             catch (Exception e)
             {
@@ -81,7 +81,7 @@ namespace BuyerServiceTesting
         {
             try
             {
-                BuyerData buyer = new BuyerData() { buyerId = 6743,userName="anvi",password="abcdefg@",emailId="anvi@gmail.com",mobileNo="9873452567",dateTime=System.DateTime.Now };
+                BuyerData buyer = new BuyerData() { buyerId = 6743, userName = "anvi", password = "abcdefg@", emailId = "anvi@gmail.com", mobileNo = "9873452567", dateTime = System.DateTime.Now };
                 var mock = new Mock<IBuyerRepository>();
                 mock.Setup(x => x.EditBuyerProfile(buyer)).ReturnsAsync(true);
                 BuyerManager buyerManager = new BuyerManager(mock.Object);

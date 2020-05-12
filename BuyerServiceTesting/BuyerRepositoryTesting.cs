@@ -15,11 +15,11 @@ namespace BuyerServiceTesting
     public class BuyerRepositoryTesting
     {
         IBuyerRepository buyerRepository;
-        
+
         [SetUp]
         public void SetUp()
         {
-            buyerRepository = new BuyerRepository(new BuyerContext());
+            buyerRepository = new BuyerRepository(new BuyerdataContext());
         }
 
         [TearDown]

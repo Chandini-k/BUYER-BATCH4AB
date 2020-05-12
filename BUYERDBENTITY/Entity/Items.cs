@@ -11,20 +11,14 @@ namespace BUYERDBENTITY.Entity
             Purchasehistory = new HashSet<Purchasehistory>();
         }
 
-        public int Id { get; set; }
-        public int? Categoryid { get; set; }
-        public int? Subcategoryid { get; set; }
-        public int? Price { get; set; }
+        public int Itemid { get; set; }
+        public int Price { get; set; }
         public string Itemname { get; set; }
         public string Description { get; set; }
         public int? Stockno { get; set; }
         public string Remarks { get; set; }
         public string Imagename { get; set; }
-        public string Categoryname { get; set; }
-        public string Subcategoryname { get; set; }
 
-        public virtual Category Category { get; set; }
-        public virtual SubCategory Subcategory { get; set; }
         public virtual ICollection<Cart> Cart { get; set; }
         public virtual ICollection<Purchasehistory> Purchasehistory { get; set; }
     }

@@ -15,7 +15,7 @@ namespace UserServiceTesting
         [SetUp]
         public void SetUp()
         {
-            userManager = new UserManager(new UserRepository(new BuyerContext()));
+            userManager = new UserManager(new UserRepository(new BuyerdataContext()));
         }
 
         [TearDown]

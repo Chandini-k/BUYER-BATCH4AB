@@ -32,7 +32,7 @@ namespace BuyerService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<BuyerContext>(options => options.UseSqlServer(Configuration.GetConnectionString("connectionstring")));
+            services.AddDbContext<BuyerdataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("connectionstring")));
             services.AddTransient<IBuyerManager, BuyerManager>();
             services.AddTransient<IBuyerRepository, BuyerRepository>();
             services.AddCors(c =>
@@ -50,7 +50,8 @@ namespace BuyerService
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BIG BASKET", Version = "v1" });
             });
             services.AddMvc(
-                config => {
+                config =>
+                {
                     config.Filters.Add(typeof(CustomExceptionFilter));
                 }
             );
@@ -63,7 +64,7 @@ namespace BuyerService
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            //
             app.UseHttpsRedirection();
 
             app.UseRouting();

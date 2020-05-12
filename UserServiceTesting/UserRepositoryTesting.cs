@@ -15,7 +15,7 @@ namespace UserServiceTesting
         [SetUp]
         public void SetUp()
         {
-            userRepository = new UserRepository(new BuyerContext());
+            userRepository = new UserRepository(new BuyerdataContext());
         }
 
         [TearDown]

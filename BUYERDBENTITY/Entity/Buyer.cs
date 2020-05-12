@@ -11,7 +11,7 @@ namespace BUYERDBENTITY.Entity
             Purchasehistory = new HashSet<Purchasehistory>();
         }
 
-        public int Bid { get; set; }
+        public int Buyerid { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }

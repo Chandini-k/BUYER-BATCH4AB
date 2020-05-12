@@ -1,4 +1,4 @@
-﻿using BUYERDBENTITY.Entity;
+﻿
 using System;
 
 namespace BUYERDBENTITY.Models

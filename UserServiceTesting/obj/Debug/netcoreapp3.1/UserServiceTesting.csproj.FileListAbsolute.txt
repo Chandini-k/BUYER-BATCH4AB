@@ -439,3 +439,10 @@ C:\BUYERPROJECT\UserServiceTesting\obj\Debug\netcoreapp3.1\UserServiceTesting.pd
 C:\BUYERPROJECT\UserServiceTesting\bin\Debug\netcoreapp3.1\System.Net.Http.Formatting.dll
 C:\BUYERPROJECT\UserServiceTesting\bin\Debug\netcoreapp3.1\System.Web.Http.dll
 C:\BUYERPROJECT\UserServiceTesting\obj\Debug\netcoreapp3.1\UserServiceTesting.csproj.CoreCompileInputs.cache
+C:\BUYERPROJECT\UserServiceTesting\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\BUYERPROJECT\UserServiceTesting\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\BUYERPROJECT\UserServiceTesting\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+C:\BUYERPROJECT\UserServiceTesting\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+C:\BUYERPROJECT\UserServiceTesting\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\BUYERPROJECT\UserServiceTesting\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+C:\BUYERPROJECT\UserServiceTesting\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll

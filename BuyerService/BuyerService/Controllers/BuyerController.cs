@@ -29,8 +29,8 @@ namespace BuyerService.Controllers
         [Route("EditProfile")]
         public async Task<IActionResult> EditBuyerProfile(BuyerData buyer)
         {
-           return Ok(await _iBuyerManager.EditBuyerProfile(buyer));
-           
+            return Ok(await _iBuyerManager.EditBuyerProfile(buyer));
+
         }
         /// <summary>
         /// Get Buyer Profile
@@ -49,7 +49,7 @@ namespace BuyerService.Controllers
             {
                 return Ok(buyer);
             }
-            
+
         }
     }
 }

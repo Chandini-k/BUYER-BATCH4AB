@@ -30,15 +30,15 @@ namespace BuyerService.Manager
 
         public async Task<BuyerData> GetBuyerProfile(int bid)
         {
-           BuyerData buyer = await _ibuyerRepository.GetBuyerProfile(bid);
-                if (buyer==null)
-                {
-                    return null;
-                }
-                else
-                {
-                    return buyer;
-                }
+            BuyerData buyer = await _ibuyerRepository.GetBuyerProfile(bid);
+            if (buyer == null)
+            {
+                return null;
+            }
+            else
+            {
+                return buyer;
+            }
         }
     }
 }

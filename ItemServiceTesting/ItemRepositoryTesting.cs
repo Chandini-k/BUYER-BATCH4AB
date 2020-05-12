@@ -18,7 +18,7 @@ namespace ItemServiceTesting
         [SetUp]
         public void SetUp()
         {
-            iitemRepository = new ItemRepository(new BuyerContext());
+            iitemRepository = new ItemRepository(new BuyerdataContext());
         }
         [TearDown]
         public void TearDown()
@@ -30,13 +30,13 @@ namespace ItemServiceTesting
         /// </summary>
         /// <returns></returns>
         [Test]
-        [TestCase(123, 856, 401, 1235, 662,50, "atta", "flour", "342", "good", "atta.img")]
+        [TestCase(123, 856, 401, 1235, 662, 50, "atta", "flour", "342", "good", "atta.img")]
         [Description("Add to cart testing")]
-        public async Task AddToCart_Successfull(int cartId, int categoryId, int subCategoryId, int buyerId, int itemid,int price, string itemName, string description, int stockno, string remarks, string imageName)
+        public async Task AddToCart_Successfull(int cartId, int buyerId, int itemid, int price, string itemName, string description, int stockno, string remarks, string imageName)
         {
             try
             {
-                var cart = new AddCart { cartId = cartId, categoryId = categoryId, subCategoryId = subCategoryId, buyerId = buyerId,itemId=itemid, price = price, itemName = itemName, description = description, stockno = stockno, remarks = remarks, imageName = imageName };
+                var cart = new AddCart { cartId = cartId, buyerId = buyerId, itemId = itemid, price = price, itemName = itemName, description = description, stockno = stockno, remarks = remarks, imageName = imageName };
                 var result = await iitemRepository.AddToCart(cart);
                 Assert.NotNull(result);
             }
@@ -50,9 +50,9 @@ namespace ItemServiceTesting
         /// </summary>
         /// <returns></returns>
         [Test]
-        [TestCase(5232,1235,662,"debit",2,"good quality","paid")]
+        [TestCase(5232, 1235, 662, "debit", 2, "good quality", "paid")]
         [Description("Buy item sucessfull")]
-        public async Task BuyItem_Sucessfull(int purchaseId,int buyerId,int itemId,string transactionType,int noofitems,string remarks,string transactionStatus)
+        public async Task BuyItem_Sucessfull(int purchaseId, int buyerId, int itemId, string transactionType, int noofitems, string remarks, string transactionStatus)
         {
             try
             {
@@ -61,7 +61,7 @@ namespace ItemServiceTesting
                 var result = await iitemRepository.BuyItem(purchaseHistory);
                 Assert.NotNull(result);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Assert.Fail(e.Message);
             }
@@ -73,7 +73,7 @@ namespace ItemServiceTesting
         /// <param name="itemid"></param>
         /// <returns></returns>
         [Test]
-        [TestCase(1235,662)]
+        [TestCase(1235, 662)]
         [Description("Buy item unsuccess")]
         public async Task CheckCartItem_Sucessfull(int buyerid, int itemid)
         {
@@ -82,7 +82,7 @@ namespace ItemServiceTesting
                 var result = await iitemRepository.CheckCartItem(buyerid, itemid);
                 Assert.True(result);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Assert.Fail(e.Message);
             }
@@ -181,7 +181,7 @@ namespace ItemServiceTesting
             try
             {
                 var result = await iitemRepository.GetCartItem(cartId);
-                Assert.IsNull(result,"Not found");
+                Assert.IsNull(result, "Not found");
             }
             catch (Exception e)
             {
@@ -221,25 +221,7 @@ namespace ItemServiceTesting
             try
             {
                 var result = await iitemRepository.GetCarts(buyerId);
-                Assert.IsEmpty(result,"No Items");
-            }
-            catch (Exception e)
-            {
-                Assert.Fail(e.Message);
-            }
-        }
-        /// <summary>
-        /// get all categories
-        /// </summary>
-        /// <returns></returns>
-        [Test]
-        [Description("testing categories")]
-        public async Task GetCategories_Successfull()
-        {
-            try
-            {
-                var result = await iitemRepository.GetCategories();
-                Assert.NotNull(result);
+                Assert.IsEmpty(result, "No Items");
             }
             catch (Exception e)
             {
@@ -279,42 +261,7 @@ namespace ItemServiceTesting
             try
             {
                 var result = await iitemRepository.GetCount(buyerId);
-                Assert.Zero(result,"No cart items");
-            }
-            catch (Exception e)
-            {
-                Assert.Fail(e.Message);
-            }
-        }
-        /// <summary>
-        /// get subcategories
-        /// </summary>
-        /// <param name="categoryName"></param>
-        /// <returns></returns>
-        [Test]
-        [TestCase("fruits vegetables")]
-        [Description("testing getsubcategories")]
-        public async Task GetSubCategories_Successfull(string categoryName)
-        {
-            try
-            {
-                var result = await iitemRepository.GetSubCategories(categoryName);
-                Assert.NotNull(result);
-            }
-            catch (Exception e)
-            {
-                Assert.Fail(e.Message);
-            }
-        }
-        [Test]
-        [TestCase("fruits")]
-        [Description("testing getsubcategories")]
-        public async Task GetSubCategories_UnSuccessfull(string categoryName)
-        {
-            try
-            {
-                var result = await iitemRepository.GetSubCategories(categoryName);
-                Assert.IsEmpty(result);
+                Assert.Zero(result, "No cart items");
             }
             catch (Exception e)
             {
@@ -328,13 +275,13 @@ namespace ItemServiceTesting
         /// <param name="price1"></param>
         /// <returns></returns>
         [Test]
-        [TestCase(30,100)]
+        [TestCase(30, 100)]
         [Description("testing items in range ")]
-        public async Task GetItems_Successfull(int price,int price1)
+        public async Task GetItems_Successfull(int price, int price1)
         {
             try
             {
-                var result = await iitemRepository.Items(price,price1);
+                var result = await iitemRepository.Items(price, price1);
                 Assert.NotNull(result);
             }
             catch (Exception e)
@@ -412,75 +359,6 @@ namespace ItemServiceTesting
                 Assert.Fail(e.Message);
             }
         }
-        /// <summary>
-        /// search items by category
-        /// </summary>
-        /// <param name="itemName"></param>
-        /// <returns></returns>
-        [Test]
-        [TestCase("fruits vegetables")]
-        [Description("testing search items")]
-        public async Task SearchItemsByCategory_Successfull(string itemName)
-        {
-            try
-            {
-                var result = await iitemRepository.SearchItemByCategory(itemName);
-                Assert.NotNull(result);
-            }
-            catch (Exception e)
-            {
-                Assert.Fail(e.Message);
-            }
-        }
-        [Test]
-        [TestCase("choco")]
-        [Description("testing search items")]
-        public async Task SearchItemsByCategory_UnSuccessfull(string itemName)
-        {
-            try
-            {
-                var result = await iitemRepository.SearchItemByCategory(itemName);
-                Assert.IsEmpty(result);
-            }
-            catch (Exception e)
-            {
-                Assert.Fail(e.Message);
-            }
-        }
-        /// <summary>
-        /// search items by subcategory
-        /// </summary>
-        /// <param name="itemName"></param>
-        /// <returns></returns>
-        [Test]
-        [TestCase("fruits")]
-        [Description("testing search items")]
-        public async Task SearchItemsBySubCategory_Successfull(string itemName)
-        {
-            try
-            {
-                var result = await iitemRepository.SearchItemBySubCategory(itemName);
-                Assert.NotNull(result);
-            }
-            catch (Exception e)
-            {
-                Assert.Fail(e.Message);
-            }
-        }
-        [Test]
-        [TestCase("choco")]
-        [Description("testing search items")]
-        public async Task SearchItemsSubCategory_UnSuccessfull(string itemName)
-        {
-            try
-            {
-                var result = await iitemRepository.SearchItemBySubCategory(itemName);
-                Assert.IsEmpty(result);
-            }
-            catch (Exception e)
-            {
-                Assert.Fail(e.Message);
-            }
-        }
+
     }
 }
