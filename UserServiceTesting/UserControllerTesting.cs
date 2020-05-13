@@ -88,7 +88,7 @@ namespace UserServiceTesting
             {
                 mockUserManageer.Setup(d => d.BuyerLogin(userName, password)).ReturnsAsync((Login)(null));
                 var result = await userController.BuyerLogin(userName, password)as OkObjectResult;
-                //Assert.That(result, Is.Null);
+                Assert.That(result,Is.Null);
                 Assert.That(result.StatusCode, Is.EqualTo(200));
             }
             catch(Exception e)

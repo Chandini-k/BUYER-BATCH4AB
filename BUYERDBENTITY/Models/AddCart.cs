@@ -7,8 +7,6 @@ namespace BUYERDBENTITY.Models
     public class AddCart
     {
         public int cartId { get; set; }
-        public int? categoryId { get; set; }
-        public int? subCategoryId { get; set; }
         public int? buyerId { get; set; }
         public int? itemId { get; set; }
         public int price { get; set; }

@@ -1,9 +1,8 @@
-
 <div class="container login-container">
     <div class="row">
         <div class="col-md-6 login-form-1">
             <h3>Login</h3>
-<form [formGroup]="regform">
+<form [formGroup]="userForm">
             
                 <div class="form-group">
                     <input type="text" formControlName="username" class="form-control" placeholder="Your Name *" value=""  [ngClass]="{ 'is-invalid': submitted && f.username.errors }"/>
@@ -20,13 +19,7 @@
                         </div>
                 </div>
                 <div class="form-group">
-                    <button style="border-color:white;color: white;" class="btn btn-outline-default my-2 my-sm-0" type="submit">login</button>
-                </div>
-                <div class="form-group" style="margin-left: 50px;">
-                    
-                        <a style="color:white;" [routerLink]="'/Land/registerbuyer'"  routerLinkActive="router-link-active" routerLinkActive="router-link-active">RegisterBuyer</a>
-                         <a style="color:white;" [routerLink]="'/Land/registerSeller'" >/RegisterSeller</a>
-                      
+                    <button style="border-color:white;color: white;" class="btn btn-outline-default my-2 my-sm-0" type="submit" (click)="onSubmitLogin()">LOGIN</button>
                 </div>
                
                 </form>

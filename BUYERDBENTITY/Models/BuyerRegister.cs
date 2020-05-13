@@ -13,7 +13,6 @@ namespace BUYERDBENTITY.Models
         [StringLength(maximumLength: 20, ErrorMessage = "Name should not be greater than 20")]
         public string userName { get; set; }
         [Required(ErrorMessage = "Password Required")]
-        [RegularExpression("[a-z0-9]{6,8}", ErrorMessage = "Invalid")]
         public string password { get; set; }
         [EmailAddress(ErrorMessage = "Invalid email address")]
         public string emailId { get; set; }
