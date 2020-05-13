@@ -28,7 +28,7 @@ import { RegisterComponent } from './Account/register/register.component';
     ViewprofileComponent,
     HomeComponent,
     LoginComponent,
-    RegisterComponent,
+    RegisterComponent
    
 
     

@@ -1,5 +1,5 @@
 export class Items {
-    public id:number;
+    public itemid:number;
     public price:number;
     public itemname:string;
     public description:string;

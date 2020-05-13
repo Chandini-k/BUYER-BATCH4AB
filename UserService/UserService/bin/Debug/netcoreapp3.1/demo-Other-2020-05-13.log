@@ -1,0 +1,14 @@
+2020-05-13 08:48:23.7945||DEBUG|UserService.Program|init main function |url: |action: 
+2020-05-13 08:48:50.6629|3|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect. |url: http://localhost/|action: 
+2020-05-13 08:48:54.0778||INFO|UserService.Controllers.UserController|User Login |url: http://localhost/api/User/Login/chandinik/abcdefg2|action: BuyerLogin
+2020-05-13 08:49:06.6862||INFO|UserService.Controllers.UserController|Welcomechandinik |url: http://localhost/api/User/Login/chandinik/abcdefg2|action: BuyerLogin
+2020-05-13 08:49:16.4149||INFO|UserService.Controllers.UserController|User Login |url: http://localhost/api/User/Login/chandinik/abcdefg2|action: BuyerLogin
+2020-05-13 08:49:16.6330||INFO|UserService.Controllers.UserController|Welcomechandinik |url: http://localhost/api/User/Login/chandinik/abcdefg2|action: BuyerLogin
+2020-05-13 08:49:17.8506||INFO|UserService.Controllers.UserController|User Login |url: http://localhost/api/User/Login/chandinik/abcdefg2|action: BuyerLogin
+2020-05-13 08:49:17.9025||INFO|UserService.Controllers.UserController|Welcomechandinik |url: http://localhost/api/User/Login/chandinik/abcdefg2|action: BuyerLogin
+2020-05-13 08:50:40.4713||DEBUG|UserService.Program|init main function |url: |action: 
+2020-05-13 08:50:42.8390|3|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect. |url: http://localhost/|action: 
+2020-05-13 08:52:19.7683||INFO|UserService.Controllers.UserController|User Login |url: http://localhost/api/User/Login/chandinik/abc|action: BuyerLogin
+2020-05-13 08:56:25.6318||DEBUG|UserService.Program|init main function |url: |action: 
+2020-05-13 08:56:28.2792|3|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect. |url: http://localhost/|action: 
+2020-05-13 08:57:04.4204||INFO|UserService.Controllers.UserController|User Login |url: http://localhost/api/User/Login/chandu/ahkd|action: BuyerLogin

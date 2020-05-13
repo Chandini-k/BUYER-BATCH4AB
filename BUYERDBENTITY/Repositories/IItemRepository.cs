@@ -1,4 +1,5 @@
-﻿using BUYERDBENTITY.Models;
+﻿using BUYERDBENTITY.Entity;
+using BUYERDBENTITY.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -16,5 +17,7 @@ namespace BUYERDBENTITY.Repositories
         Task<bool> DeleteCart(int cartId);
         Task<AddCart> GetCartItem(int cartid);
         Task<List<Product>> Items(int price, int price1);
+        
+
     }
 }

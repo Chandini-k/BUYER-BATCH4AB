@@ -20,14 +20,15 @@ namespace UserServiceTesting
         private UserController userController;
        private Mock<IUserManager> mockUserManageer;
         private Mock<ILogger<UserController>> logger;
-       private  IConfiguration configuration;
+       private  Mock<IConfiguration> configuration;
 
         [SetUp]
         public void Setup()
         {
+            configuration = new Mock<IConfiguration>();
             mockUserManageer = new Mock<IUserManager>();
             logger = new Mock<ILogger<UserController>>();
-            userController = new UserController(logger.Object,mockUserManageer.Object,configuration);
+            userController = new UserController(logger.Object,mockUserManageer.Object,configuration.Object);
             
         }
         [Test]
@@ -56,7 +57,7 @@ namespace UserServiceTesting
         /// <param name="password"></param>
         /// <returns></returns>
         [Test]
-        [TestCase("chan", "abcdefg@")]
+        [TestCase("chandinik", "abcdefg2")]
         [Description("Buyer Login")]
         public async Task BuyerLogin_Successfull(string userName, string password)
         {
@@ -79,16 +80,16 @@ namespace UserServiceTesting
         /// <param name="password"></param>
         /// <returns></returns>
         [Test]
-        [TestCase("chandinik", "abcdefg@")]
+        [TestCase("chand", "abcdefg@")]
         [Description("Buyer Login")]
         public async Task BuyerLogin_UnSuccessfull(string userName, string password)
         {
             try
             {
-                mockUserManageer.Setup(d => d.BuyerLogin(userName, password));
-                IActionResult result = await userController.BuyerLogin(userName, password);
-                Assert.IsNull(result);
-                Assert.IsNull(result,"Invalid User");
+                mockUserManageer.Setup(d => d.BuyerLogin(userName, password)).ReturnsAsync((Login)(null));
+                var result = await userController.BuyerLogin(userName, password)as OkObjectResult;
+                //Assert.That(result, Is.Null);
+                Assert.That(result.StatusCode, Is.EqualTo(200));
             }
             catch(Exception e)
             {

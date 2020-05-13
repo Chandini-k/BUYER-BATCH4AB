@@ -23,6 +23,8 @@ namespace BuyerServiceTesting
             _builder = new DbContextOptionsBuilder<BuyerdataContext>().EnableSensitiveDataLogging().UseInMemoryDatabase(Guid.NewGuid().ToString());
             BuyerdataContext buyerdataContext = new BuyerdataContext(_builder.Options);
             buyerRepository = new BuyerRepository(buyerdataContext);
+            buyerdataContext.Buyer.Add(new Buyer { Buyerid = 5341, Username = "chandu", Password = "abcdefg2", Email = "chand@gmail.com", Mobileno = "9876543213", Datetime = DateTime.Now });
+            buyerdataContext.SaveChanges();
         }
 
         [TearDown]
@@ -34,8 +36,7 @@ namespace BuyerServiceTesting
         /// Testing buyer profile
         /// </summary>
         [Test]
-        [TestCase(4526)]
-        [TestCase(3252)]
+        [TestCase(5341)]
         [Description("testing buyer Profile")]
         public async Task BuyerProfile_Successfull(int buyerId)
         {
@@ -81,7 +82,7 @@ namespace BuyerServiceTesting
         {
             try
             {
-                BuyerData buyer = new BuyerData() { buyerId = 6743, userName = "anvi", password = "abcdefg@", emailId = "anvi@gmail.com", mobileNo = "9873452567", dateTime = System.DateTime.Now };
+                BuyerData buyer = new BuyerData() { buyerId = 5341, userName = "anvi", password = "abcdefg@", emailId = "anvi@gmail.com", mobileNo = "9873452567", dateTime = System.DateTime.Now };
                 var mock = new Mock<IBuyerRepository>();
                 mock.Setup(x => x.EditBuyerProfile(buyer)).ReturnsAsync(true);
                 var result = await buyerRepository.EditBuyerProfile(buyer);

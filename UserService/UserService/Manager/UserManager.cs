@@ -20,7 +20,6 @@ namespace UserService.Manager
         {
             Buyer buyer1 = new Buyer();
             var result = buyers.Where(i => i.Email.ToString() == buyer1.Email.ToString()).Select(i => i).ToList();
-            //var result = (from i in buyers select i).ToList();
             if (result.Count>1)
             {
                 return false;

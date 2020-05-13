@@ -230,6 +230,5 @@ namespace BUYERDBENTITY.Repositories
                 return products;
             }
         }
-       
     }
 }

@@ -436,3 +436,5 @@ C:\BUYERPROJECT\ItemServiceTesting\obj\Debug\netcoreapp3.1\ItemServiceTesting.cs
 C:\BUYERPROJECT\ItemServiceTesting\obj\Debug\netcoreapp3.1\ItemServiceTesting.dll
 C:\BUYERPROJECT\ItemServiceTesting\obj\Debug\netcoreapp3.1\ItemServiceTesting.pdb
 C:\BUYERPROJECT\ItemServiceTesting\obj\Debug\netcoreapp3.1\ItemServiceTesting.genruntimeconfig.cache
+C:\BUYERPROJECT\ItemServiceTesting\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.InMemory.dll
+C:\BUYERPROJECT\ItemServiceTesting\obj\Debug\netcoreapp3.1\ItemServiceTesting.csproj.CoreCompileInputs.cache

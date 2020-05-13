@@ -147,6 +147,5 @@ namespace ItemsService.Controllers
 
             return Ok(await _iitemManager.Search(itemName));
         }
-       
     }
 }

@@ -19,6 +19,5 @@ namespace ItemsService.Manager
         Task<bool> DeleteCart(int cartId);
         Task<AddCart> GetCartItem(int cartid);
         Task<List<Product>> Items(int price, int price1);
-        
     }
 }

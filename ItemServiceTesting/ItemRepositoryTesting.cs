@@ -23,6 +23,11 @@ namespace ItemServiceTesting
             _builder = new DbContextOptionsBuilder<BuyerdataContext>().EnableSensitiveDataLogging().UseInMemoryDatabase(Guid.NewGuid().ToString());
             BuyerdataContext buyerdataContext = new BuyerdataContext(_builder.Options);
             iitemRepository = new ItemRepository(buyerdataContext);
+            buyerdataContext.Items.Add(new Items { Itemid = 662, Itemname = "milk", Price = 30, Stockno =5463, Description = "good", Remarks = "fresh",Imagename="atta.img" });
+            buyerdataContext.Cart.Add(new Cart {Cartid=234,Buyerid=1236,Itemid=662,Price=435,Itemname="choc",Description="good",Stockno=35,Remarks="sfsf",Imagename="choc.img" });
+            buyerdataContext.Purchasehistory.Add(new Purchasehistory { Purchaseid = 444, Buyerid = 5341, Itemid = 662, Transactiontype = "debit", Noofitems = 2, Remarks = "good", Transactionstatus = "paid" });
+            buyerdataContext.Buyer.Add(new Buyer { Buyerid = 5341, Username = "chandu", Password = "abcdefg2", Email = "chand@gmail.com", Mobileno = "9876543213", Datetime = DateTime.Now });
+            buyerdataContext.SaveChanges();
         }
         [TearDown]
         public void TearDown()
@@ -34,7 +39,7 @@ namespace ItemServiceTesting
         /// </summary>
         /// <returns></returns>
         [Test]
-        [TestCase(123, 856, 401, 1235, 662, 50, "atta", "flour", "342", "good", "atta.img")]
+        [TestCase(123, 1235, 662, 50, "atta", "flour", "342", "good", "atta.img")]
         [Description("Add to cart testing")]
         public async Task AddToCart_Successfull(int cartId, int buyerId, int itemid, int price, string itemName, string description, int stockno, string remarks, string imageName)
         {
@@ -77,7 +82,7 @@ namespace ItemServiceTesting
         /// <param name="itemid"></param>
         /// <returns></returns>
         [Test]
-        [TestCase(1235, 662)]
+        [TestCase(1236, 662)]
         [Description("Buy item unsuccess")]
         public async Task CheckCartItem_Sucessfull(int buyerid, int itemid)
         {
@@ -118,7 +123,7 @@ namespace ItemServiceTesting
         /// <param name="cartId"></param>
         /// <returns></returns>
         [Test]
-        [TestCase(123)]
+        [TestCase(234)]
         [Description("Delete cart Successful")]
         public async Task DeleteCart_Sucessfull(int cartId)
         {
@@ -158,7 +163,7 @@ namespace ItemServiceTesting
         /// <param name="cartId"></param>
         /// <returns></returns>
         [Test]
-        [TestCase(123)]
+        [TestCase(234)]
         [Description("testing cart item")]
         public async Task GetCart_Successfull(int cartId)
         {
@@ -238,7 +243,7 @@ namespace ItemServiceTesting
         /// <param name="buyerId"></param>
         /// <returns></returns>
         [Test]
-        [TestCase(1235)]
+        [TestCase(1236)]
         [Description("testing buyer cart item")]
         public async Task GetCartCount_Successfull(int buyerId)
         {
@@ -299,7 +304,7 @@ namespace ItemServiceTesting
         /// <param name="buyerId"></param>
         /// <returns></returns>
         [Test]
-        [TestCase(1235)]
+        [TestCase(5341)]
         [Description("testing purchase history")]
         public async Task PurchaseHistory_Successfull(int buyerId)
         {
@@ -321,7 +326,7 @@ namespace ItemServiceTesting
             try
             {
                 var result = await iitemRepository.Purchase(buyerId);
-                Assert.IsEmpty(result);
+                Assert.IsNull(result);
             }
             catch (Exception e)
             {
