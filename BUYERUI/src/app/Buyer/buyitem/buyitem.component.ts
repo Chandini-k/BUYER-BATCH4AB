@@ -25,11 +25,10 @@ export class BuyitemComponent implements OnInit {
   total:number;
   submitted=false;
     constructor(private fromb:FormBuilder,private route:Router,private service:ItemsService, router:Router) {
-      this.items=JSON.parse(localStorage.getItem('item'));
-    this.list.push(this.items)
-    console.log(this.list)
-    }
-     
+      this.items=JSON.parse(localStorage.getItem('items'));
+      this.list.push(this.items)
+       console.log(this.list)
+    }  
      get f()
     {
       return this.payform.controls;
