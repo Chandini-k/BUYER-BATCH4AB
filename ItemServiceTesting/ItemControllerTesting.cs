@@ -32,7 +32,7 @@ namespace ItemServiceTesting
         /// </summary>
         /// <returns></returns>
         [Test]
-        [TestCase(123, 1235, 662, 50, "atta", "flour", "342", "good", "atta.img")]
+        [TestCase(123, 123455, 662, 500, "atta", "flour", "342", "good", "atta.img")]
         [Description("Add to cart testing")]
         public async Task AddToCart_Successfull(int cartId, int buyerId, int itemid, int price, string itemName, string description, int stockno, string remarks, string imageName)
         {
