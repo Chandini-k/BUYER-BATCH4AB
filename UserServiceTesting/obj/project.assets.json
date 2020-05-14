@@ -10360,39 +10360,33 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Administrator\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\karthu\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\BUYERPROJECT\\UserServiceTesting\\UserServiceTesting.csproj",
+      "projectUniqueName": "H:\\BUYERPROJECT\\UserServiceTesting\\UserServiceTesting.csproj",
       "projectName": "UserServiceTesting",
-      "projectPath": "C:\\BUYERPROJECT\\UserServiceTesting\\UserServiceTesting.csproj",
-      "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-      "outputPath": "C:\\BUYERPROJECT\\UserServiceTesting\\obj\\",
+      "projectPath": "H:\\BUYERPROJECT\\UserServiceTesting\\UserServiceTesting.csproj",
+      "packagesPath": "C:\\Users\\karthu\\.nuget\\packages\\",
+      "outputPath": "H:\\BUYERPROJECT\\UserServiceTesting\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 19.2.config",
+        "C:\\Users\\karthu\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\DevExpress 19.2\\Components\\System\\Components\\Packages": {},
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\BUYERPROJECT\\UserService\\UserService\\UserService.csproj": {
-              "projectPath": "C:\\BUYERPROJECT\\UserService\\UserService\\UserService.csproj"
+            "H:\\BUYERPROJECT\\UserService\\UserService\\UserService.csproj": {
+              "projectPath": "H:\\BUYERPROJECT\\UserService\\UserService\\UserService.csproj"
             }
           }
         }
@@ -10463,7 +10457,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.202\\RuntimeIdentifierGraph.json"
       }
     }
   },

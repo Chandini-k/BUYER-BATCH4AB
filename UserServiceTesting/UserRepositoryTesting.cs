@@ -20,7 +20,7 @@ namespace UserServiceTesting
             _builder = new DbContextOptionsBuilder<BuyerdataContext>().EnableSensitiveDataLogging().UseInMemoryDatabase(Guid.NewGuid().ToString());
             BuyerdataContext buyerdataContext = new BuyerdataContext(_builder.Options);
             userRepository = new UserRepository(buyerdataContext);
-            buyerdataContext.Buyer.Add(new Buyer { Buyerid = 2341, Username = "chandu", Password = "abcdefg2", Email = "chand@gmail.com", Mobileno = "9876543213", Datetime = DateTime.Now });
+            buyerdataContext.Buyer.Add(new Buyer { Buyerid = 2341, Username = "chandu", Password = "abcdefg2", Email = "chandu@gmail.com", Mobileno = "9876543213", Datetime = DateTime.Now });
             buyerdataContext.SaveChanges();
         }
 

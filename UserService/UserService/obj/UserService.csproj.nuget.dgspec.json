@@ -1,31 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "C:\\BUYERPROJECT\\UserService\\UserService\\UserService.csproj": {}
+    "H:\\BUYERPROJECT\\UserService\\UserService\\UserService.csproj": {}
   },
   "projects": {
-    "C:\\BUYERPROJECT\\BUYERDBENTITY\\BUYERDBENTITY.csproj": {
+    "H:\\BUYERPROJECT\\BUYERDBENTITY\\BUYERDBENTITY.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\BUYERPROJECT\\BUYERDBENTITY\\BUYERDBENTITY.csproj",
+        "projectUniqueName": "H:\\BUYERPROJECT\\BUYERDBENTITY\\BUYERDBENTITY.csproj",
         "projectName": "BUYERDBENTITY",
-        "projectPath": "C:\\BUYERPROJECT\\BUYERDBENTITY\\BUYERDBENTITY.csproj",
-        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-        "outputPath": "C:\\BUYERPROJECT\\BUYERDBENTITY\\obj\\",
+        "projectPath": "H:\\BUYERPROJECT\\BUYERDBENTITY\\BUYERDBENTITY.csproj",
+        "packagesPath": "C:\\Users\\karthu\\.nuget\\packages\\",
+        "outputPath": "H:\\BUYERPROJECT\\BUYERDBENTITY\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 19.2.config",
+          "C:\\Users\\karthu\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\DevExpress 19.2\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
@@ -73,40 +68,35 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.202\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\BUYERPROJECT\\UserService\\UserService\\UserService.csproj": {
+    "H:\\BUYERPROJECT\\UserService\\UserService\\UserService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\BUYERPROJECT\\UserService\\UserService\\UserService.csproj",
+        "projectUniqueName": "H:\\BUYERPROJECT\\UserService\\UserService\\UserService.csproj",
         "projectName": "UserService",
-        "projectPath": "C:\\BUYERPROJECT\\UserService\\UserService\\UserService.csproj",
-        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-        "outputPath": "C:\\BUYERPROJECT\\UserService\\UserService\\obj\\",
+        "projectPath": "H:\\BUYERPROJECT\\UserService\\UserService\\UserService.csproj",
+        "packagesPath": "C:\\Users\\karthu\\.nuget\\packages\\",
+        "outputPath": "H:\\BUYERPROJECT\\UserService\\UserService\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 19.2.config",
+          "C:\\Users\\karthu\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\DevExpress 19.2\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\BUYERPROJECT\\BUYERDBENTITY\\BUYERDBENTITY.csproj": {
-                "projectPath": "C:\\BUYERPROJECT\\BUYERDBENTITY\\BUYERDBENTITY.csproj"
+              "H:\\BUYERPROJECT\\BUYERDBENTITY\\BUYERDBENTITY.csproj": {
+                "projectPath": "H:\\BUYERPROJECT\\BUYERDBENTITY\\BUYERDBENTITY.csproj"
               }
             }
           }
@@ -181,7 +171,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.202\\RuntimeIdentifierGraph.json"
         }
       }
     }
