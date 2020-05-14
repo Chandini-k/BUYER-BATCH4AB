@@ -25,7 +25,7 @@ namespace ItemServiceTesting
             iitemRepository = new ItemRepository(buyerdataContext);
             buyerdataContext.Items.Add(new Items { Itemid = 662, Itemname = "milk", Price = 30, Stockno =5463, Description = "good", Remarks = "fresh",Imagename="atta.img" });
             buyerdataContext.Cart.Add(new Cart {Cartid=234,Buyerid=1236,Itemid=662,Price=435,Itemname="choc",Description="good",Stockno=35,Remarks="sfsf",Imagename="choc.img" });
-            buyerdataContext.Purchasehistory.Add(new Purchasehistory { Purchaseid = 444, Buyerid = 5341, Itemid = 662, Transactiontype = "debit", Noofitems = 2, Remarks = "good", Transactionstatus = "paid" });
+            buyerdataContext.Purchasehistory.Add(new Purchasehistory { Purchaseid = 444, Buyerid = 5341, Itemid = 662, Transactiontype = "debit", Noofitems = 2, Remarks = "good",Itemname="sweet", Transactionstatus = "paid" });
             buyerdataContext.Buyer.Add(new Buyer { Buyerid = 5341, Username = "chandu", Password = "abcdefg2", Email = "chand@gmail.com", Mobileno = "9876543213", Datetime = DateTime.Now });
             buyerdataContext.SaveChanges();
         }
@@ -59,14 +59,14 @@ namespace ItemServiceTesting
         /// </summary>
         /// <returns></returns>
         [Test]
-        [TestCase(5232, 1235, 662, "debit", 2, "good quality", "paid")]
+        [TestCase(5232, 1235, 662, "debit", 2, "sweet","good quality", "paid")]
         [Description("Buy item sucessfull")]
-        public async Task BuyItem_Sucessfull(int purchaseId, int buyerId, int itemId, string transactionType, int noofitems, string remarks, string transactionStatus)
+        public async Task BuyItem_Sucessfull(int purchaseId, int buyerId, int itemId, string transactionType, int noofitems, string itemName,string remarks, string transactionStatus)
         {
             try
             {
                 DateTime dateTime = System.DateTime.Now;
-                var purchaseHistory = new PurchaseHistory { purchaseId = purchaseId, buyerId = buyerId, itemId = itemId, transactionType = transactionType, noOfItems = noofitems, remarks = remarks, transactionStatus = transactionStatus, dateTime = dateTime };
+                var purchaseHistory = new PurchaseHistory { purchaseId = purchaseId, buyerId = buyerId, itemId = itemId, transactionType = transactionType, noOfItems = noofitems,itemName=itemName, remarks = remarks, transactionStatus = transactionStatus, dateTime = dateTime };
                 var result = await iitemRepository.BuyItem(purchaseHistory);
                 Assert.NotNull(result);
             }

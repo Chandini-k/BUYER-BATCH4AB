@@ -8,6 +8,7 @@ import { SearchComponent } from './Buyer/search/search.component';
 import { ViewcartComponent } from './Buyer/viewcart/viewcart.component';
 import { PurchasehistoryComponent } from './Buyer/purchasehistory/purchasehistory.component';
 import { ViewprofileComponent } from './Buyer/viewprofile/viewprofile.component';
+import { BuyitemComponent } from './Buyer/buyitem/buyitem.component';
 const routes: Routes = [
   {path:'home',component:HomeComponent,children:[
        {path:'login',component:LoginComponent},
@@ -16,7 +17,8 @@ const routes: Routes = [
         {path:'search',component:SearchComponent},
         {path:'viewcart',component:ViewcartComponent},
         {path:'purchasehistory',component:PurchasehistoryComponent},
-        {path:'viewprofile',component:ViewprofileComponent}]},
+        {path:'viewprofile',component:ViewprofileComponent},
+        {path:'buyitem',component:BuyitemComponent}]},
       {path:'',component:HomeComponent}
 
 ];

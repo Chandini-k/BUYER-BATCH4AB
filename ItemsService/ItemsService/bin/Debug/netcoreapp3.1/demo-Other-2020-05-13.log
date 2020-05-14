@@ -64,3 +64,5 @@ Error Number:2627,State:1,Class:14
    at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)|url: http://localhost/api/Items/AddItem|action: Add
 2020-05-13 07:32:53.2009||DEBUG|ItemsService.Program|init main function |url: |action: 
 2020-05-13 07:32:56.7377|3|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect. |url: http://localhost/weatherforecast|action: 
+2020-05-13 21:12:54.7730||DEBUG|ItemsService.Program|init main function |url: |action: 
+2020-05-13 21:13:14.1230|3|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect. |url: http://localhost/weatherforecast|action: 

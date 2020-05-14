@@ -51,13 +51,6 @@ export class SearchComponent implements OnInit {
     this.route.navigateByUrl('/buyer/buyitem');
   }
   AddtoCart(item2:Items){
-    this.id=item2.itemId;
-    this.service.GetCart(this.id).subscribe(res=>{this.id2=res,console.log(this.id2)
-    if(this.id2!=0)
-    {
-      alert("already exists")
-    }
-    else{
     console.log(item2);
    this.cart=new Cart();
    this.cart.cartId=Math.floor(Math.random()*1000);
@@ -75,7 +68,6 @@ export class SearchComponent implements OnInit {
      alert('Added To Cart');
    })
   }
-  })}
   Logout(){
     this.route.navigateByUrl('HOME');
   }

@@ -52,6 +52,7 @@ namespace BUYERDBENTITY.Repositories
                 purchasehistory.Buyerid = purchase.buyerId;
                 purchasehistory.Transactiontype = purchase.transactionType;
                 purchasehistory.Itemid = purchase.itemId;
+                purchasehistory.Itemname = purchase.itemName;
                 purchasehistory.Noofitems = purchase.noOfItems;
                 purchasehistory.Datetime = purchase.dateTime;
                 purchasehistory.Remarks = purchase.remarks;
@@ -197,6 +198,7 @@ namespace BUYERDBENTITY.Repositories
                         buyerId = s.Buyerid,
                         transactionType = s.Transactiontype,
                         itemId = s.Itemid,
+                        itemName=s.Itemname,
                         noOfItems = s.Noofitems,
                         dateTime = s.Datetime,
                         remarks = s.Remarks,

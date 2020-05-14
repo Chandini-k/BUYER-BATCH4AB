@@ -48,9 +48,4 @@ export class ItemsService {
   public GetCount(bid:number):Observable<any>{
     return this.http.get<any>(this.url2+'GetCount/'+bid,Requestheaders);
   }
-  url4:string='http://localhost:58765/api/Items/'
-  public AddItem(items:Items):Observable<any>
-  {
-    return this.http.post<any>(this.url4+'AddItem',JSON.stringify(items),Requestheaders);
-  }
 }
