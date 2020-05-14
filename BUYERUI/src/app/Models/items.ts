@@ -1,7 +1,7 @@
 export class Items {
-    public itemId:number;
+    public productId:number;
     public price:number;
-    public itemName:string;
+    public productName:string;
     public description:string;
     public stockno:number;
     public remarks:string;

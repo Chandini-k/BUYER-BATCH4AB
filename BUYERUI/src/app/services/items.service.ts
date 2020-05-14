@@ -28,7 +28,7 @@ export class ItemsService {
     return this.http.get<any>(this.url2+'SearchItemBySubCategory/'+name,Requestheaders)
   }
   public BuyItem(purchase:Purchasehistory):Observable<any>{
-    return this.http.post<any>(this.url2+'BuyItem',purchase,Requestheaders)
+    return this.http.post<any>(this.url2+'BuyItem',JSON.stringify(purchase),Requestheaders)
   }
   public GetCategory():Observable<any>{
     return this.http.get<any>(this.url2+'GetCategory',Requestheaders);
@@ -36,16 +36,16 @@ export class ItemsService {
   public PurchaseHistory(buyerid:number):Observable<any>{
     return this.http.get<any>(this.url2+'View/'+buyerid,Requestheaders);
   }
-  public AddtoCart(cart:Cart):Observable<Cart>{
-    return this.http.post<Cart>(this.url2+'AddtoCart',cart,Requestheaders);
+  public AddToCart(cart:Cart):Observable<any>{
+    return this.http.post<any>(this.url2+'AddtoCart',JSON.stringify(cart),Requestheaders);
   }
   public DeleteCart(id:number):Observable<any>{
     return this.http.delete<any>(this.url2+'DeleteCart/'+id,Requestheaders);
   }
-  public GetCart(bid:number):Observable<any>{
-    return this.http.get<any>(this.url2+'GetCart/'+bid,Requestheaders);
+  public GetCarts(buyerId:number):Observable<any>{
+    return this.http.get<any>(this.url2+'GetCart/'+buyerId,Requestheaders);
   }
-  public GetCount(bid:number):Observable<any>{
-    return this.http.get<any>(this.url2+'GetCount/'+bid,Requestheaders);
+  public GetCount(buyerId:number):Observable<any>{
+    return this.http.get<any>(this.url2+'GetCount/'+buyerId,Requestheaders);
   }
 }

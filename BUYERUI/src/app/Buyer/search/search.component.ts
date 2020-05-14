@@ -17,15 +17,12 @@ export class SearchComponent implements OnInit {
   item:Items
   num:number;
   cart:Cart;
-  list1:Items[]=[];
-  id: number;
-  id2:number;
   constructor(private builder:FormBuilder,private service:ItemsService,private route:Router) {
  }
 
   ngOnInit() {
     this.itemform=this.builder.group({
-      itemName:['']
+      productName:['']
     })
    
   }
@@ -34,7 +31,7 @@ export class SearchComponent implements OnInit {
   Search()
   {
     
-    this.service.SearchItems(this.itemform.value['itemName']).subscribe(res=>
+    this.service.SearchItems(this.itemform.value['productName']).subscribe(res=>
       {
         
        this.list=res;
@@ -50,25 +47,25 @@ export class SearchComponent implements OnInit {
     localStorage.setItem('item',JSON.stringify(item));
     this.route.navigateByUrl('/buyer/buyitem');
   }
-  AddtoCart(item2:Items){
-    console.log(item2);
+  AddtoCart(items:Items){
+    console.log(items);
    this.cart=new Cart();
-   this.cart.cartId=Math.floor(Math.random()*1000);
-   this.cart.itemName=item2.itemName;
+   this.cart.cartId=Math.round(Math.random()*1000);
+   this.cart.itemName=items.productName;
    this.cart.buyerId=Number(localStorage.getItem('Buyerid'));
-   this.cart.stockno=item2.stockno;
-   this.cart.price=item2.price;
-   this.cart.itemId=item2.itemId;
-   this.cart.description=item2.description;
-   this.cart.remarks=item2.remarks;
-   this.cart.imageName=item2.imageName
+   this.cart.stockno=items.stockno;
+   this.cart.price=items.price;
+   this.cart.itemId=items.productId;
+   this.cart.description=items.description;
+   this.cart.remarks=items.remarks;
+   this.cart.imageName=items.imageName;
    console.log(this.cart);
-   this.service.AddtoCart(this.cart).subscribe(res=>{
+   this.service.AddToCart(this.cart).subscribe(res=>{
      console.log("Record added To Cart");
      alert('Added To Cart');
    })
   }
   Logout(){
-    this.route.navigateByUrl('HOME');
+    this.route.navigateByUrl('home');
   }
 }

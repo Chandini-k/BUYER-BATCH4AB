@@ -1,19 +1,19 @@
 <form [formGroup]="itemform">
-  <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="search" formControlName="itemName" placeholder="Search" aria-label="Search">
+  <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="search" formControlName="productName" placeholder="Search" aria-label="Search">
     <button type="button" class="btn btn-light" (click)="Search()">Search</button>
 </form>
 <div class="container">
 <div class="row" >
-  <div class="col-md-3" *ngFor="let item of list">
+  <div class="col-md-3" *ngFor="let items of list">
   <div class="card" style="width:250px">
-    <img class="img" src="assets/images/{{item.imageName}}" alt="Card image" style="width:100%">
+    <img class="img" src="assets/images/{{items.imageName}}" alt="Card image" style="width:100%">
     <div class="card-body">
-      <h4 class="card-title">{{item.description}}</h4>
-      <h5 class="card-text">ID:{{item.itemId}}
-         Price:{{item.price}} </h5>
+      <h4 class="card-title">{{items.description}}</h4>
+      <h5 class="card-text">Id:{{items.productId}}
+         Price:{{items.price}} </h5>
       <button type="button" (click)="Buy(item)" class="btn btn-primary" >BuyItem</button>
  
-      <button type="button" (click)="AddtoCart(item)" class="btn btn-primary">AddToCart</button>
+      <button type="button" (click)="AddtoCart(items)" class="btn btn-primary">AddToCart</button>
      
     <!-- <a href="#" class="btn btn-primary">See Profile</a> -->
     </div>

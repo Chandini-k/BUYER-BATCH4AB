@@ -85,8 +85,8 @@ export class BuyitemComponent implements OnInit {
     this.purchase.puchaseId=Number(Math.floor(Math.random()*1000));
     this.purchase.buyerId=Number(localStorage.getItem('Buyerid'));
     this.purchase.transactionType=this.payform.value['transactionType']
-    this.purchase.itemId=this.items.itemId;
-    this.purchase.itemName=this.items.itemName;
+    this.purchase.itemId=this.items.productId;
+    this.purchase.itemName=this.items.productName;
     this.purchase.noOfItems=this.payform.value['noOfItems']
     this.purchase.dateTime=this.today;
     this.purchase.remarks=this.payform.value['remarks']
