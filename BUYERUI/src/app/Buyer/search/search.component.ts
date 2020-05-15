@@ -65,6 +65,7 @@ id2:number;
    this.service.AddToCart(this.cart).subscribe(res=>{
      console.log("Record added To Cart");
      alert('Added To Cart');
+     this.route.navigateByUrl('/buyer/search');
    })
   }
   Logout(){

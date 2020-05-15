@@ -1,5 +1,5 @@
 export class Purchasehistory {
-    public puchaseId:number;
+    public purchaseId:number;
     public buyerId:number;
     public transactionType:string;
     public itemId:number;

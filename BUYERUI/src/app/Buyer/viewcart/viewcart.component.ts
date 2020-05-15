@@ -12,19 +12,23 @@ import { Cart } from 'src/app/Models/cart';
 export class ViewcartComponent implements OnInit {
   cartlist:Cart[]=[];
   item:Items;
+  id:number;
     constructor(private route:Router,private service:ItemsService) {
-      let id=Number(localStorage.getItem('Buyerid'))
-      this.service.GetCarts(id).subscribe(res=>{
+     this.id=Number(localStorage.getItem('Buyerid'))
+     this.View();
+     }
+     View()
+     {
+      this.service.GetCarts(this.id).subscribe(res=>{
         this.cartlist=res;
         console.log(this.cartlist);
       })
      }
     ngOnInit() {
     }
-  BuyNow(item:Items){
-        console.log(item);
-        this.item=item;
-        localStorage.setItem("item",JSON.stringify(this.item));
+  BuyNow(items:Items){
+        console.log(items);
+        localStorage.setItem('items',JSON.stringify(items));
         this.route.navigateByUrl('/buyer/buyitem');
   }
   Remove(cartId:number)
@@ -34,6 +38,7 @@ export class ViewcartComponent implements OnInit {
     this.service.DeleteCart(id).subscribe(res=>{
       console.log('Item Removed from Cart');
       alert('Item Removed from Cart');
+      this.View();
     })
   }
   Logout(){

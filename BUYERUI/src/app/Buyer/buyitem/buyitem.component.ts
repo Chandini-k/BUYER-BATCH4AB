@@ -81,7 +81,7 @@ export class BuyitemComponent implements OnInit {
   
   Buy(){
     this.purchase=new Purchasehistory();
-    this.purchase.puchaseId=Number(Math.floor(Math.random()*1000));
+    this.purchase.purchaseId=Number(Math.floor(Math.random()*1000));
     this.purchase.buyerId=Number(localStorage.getItem('Buyerid'));
     this.purchase.transactionType=this.payform.value['transactionType']
     this.purchase.itemId=this.items.productId;
