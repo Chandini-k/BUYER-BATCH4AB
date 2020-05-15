@@ -28,7 +28,8 @@ export class ViewcartComponent implements OnInit {
     }
   BuyNow(items:Items){
         console.log(items);
-        localStorage.setItem('items',JSON.stringify(items));
+        this.item=items;
+        localStorage.setItem('items',JSON.stringify(this.item));
         this.route.navigateByUrl('/buyer/buyitem');
   }
   Remove(cartId:number)
