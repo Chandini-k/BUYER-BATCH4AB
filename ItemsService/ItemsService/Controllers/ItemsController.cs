@@ -2,20 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BUYERDBENTITY.Entity;
-using BUYERDBENTITY.Models;
-using ItemsService.Manager;
+using BuyerDB.Entity;
+using ItemService.Manager;
+using ItemService.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ItemsService.Controllers
+namespace ItemService.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ItemsController : ControllerBase
+    public class ItemController : ControllerBase
     {
-        private readonly IItemManager _iitemManager;
-        public ItemsController(IItemManager iitemManager)
+        private readonly IManager _iitemManager;
+        public ItemController(IManager iitemManager)
         {
             _iitemManager = iitemManager;
         }
@@ -26,7 +26,7 @@ namespace ItemsService.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("AddtoCart")]
-        public async Task<IActionResult> AddToCart(AddCart cart)
+        public async Task<IActionResult> AddToCart(Addcart cart)
         {
             bool cart1 = await _iitemManager.AddToCart(cart);
             if (cart1)
@@ -41,7 +41,7 @@ namespace ItemsService.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("BuyItem")]
-        public async Task<IActionResult> BuyItem(PurchaseHistory purchasehistory)
+        public async Task<IActionResult> BuyItem(purchasehistory purchasehistory)
         {
             return Ok(await _iitemManager.BuyItem(purchasehistory));
         }
@@ -55,7 +55,9 @@ namespace ItemsService.Controllers
         [Route("CheckCartItem/{buyerId}/{itemId}")]
         public async Task<IActionResult> CheckCartItem(int buyerId, int itemId)
         {
-            return Ok(await _iitemManager.CheckCartItem(buyerId, itemId));
+            bool check = await _iitemManager.CheckCartItem(buyerId, itemId);
+            if (check == true) { return Ok(); }
+            else { return NoContent(); }
         }
         /// <summary>
         /// Delete Cart Item
@@ -66,7 +68,9 @@ namespace ItemsService.Controllers
         [Route("DeleteCart/{cartid}")]
         public async Task<IActionResult> DeleteCart(int cartid)
         {
-            return Ok(await _iitemManager.DeleteCart(cartid));
+            bool b = await _iitemManager.DeleteCart(cartid);
+            if (b==true) { return Ok(); }
+            else { return NotFound(); }
         }
         /// <summary>
         /// Get Cart Item
@@ -77,14 +81,14 @@ namespace ItemsService.Controllers
         [Route("GetCartItem/{cartid}")]
         public async Task<IActionResult> GetCartItem(int cartid)
         {
-            AddCart cart1 = await _iitemManager.GetCartItem(cartid);
+            Addcart cart1 = await _iitemManager.GetCartItem(cartid);
             if (cart1 != null)
             {
                 return Ok(cart1);
             }
             else
             {
-                return Ok("Cart is Null");
+                return NoContent();
             }
         }
         /// <summary>
@@ -96,7 +100,9 @@ namespace ItemsService.Controllers
         [Route("GetCart/{buerId}")]
         public async Task<IActionResult> GetCart(int buyerId)
         {
-            return Ok(await _iitemManager.GetCarts(buyerId));
+            var check = await _iitemManager.GetCarts(buyerId);
+            if (check == null) { return NoContent(); }
+            else { return Ok(check); }
         }
         /// <summary>
         /// Get cart count
@@ -133,7 +139,9 @@ namespace ItemsService.Controllers
         [Route("PurchaseHistory/{buyerId}")]
         public async Task<IActionResult> Purchase(int buyerId)
         {
-            return Ok(await _iitemManager.Purchase(buyerId));
+            var check = await _iitemManager.Purchase(buyerId);
+            if (check != null) { return Ok(); }
+            else { return NoContent(); }
         }
         /// <summary>
         /// Search items
@@ -144,8 +152,10 @@ namespace ItemsService.Controllers
         [Route("SearchItems/{itemName}")]
         public async Task<IActionResult> SearchItem(string itemName)
         {
-
-            return Ok(await _iitemManager.Search(itemName));
+            var check = await _iitemManager.Search(itemName);
+            if (check != null) { return Ok(); }
+            else { return NotFound(); }
         }
     }
 }
+    

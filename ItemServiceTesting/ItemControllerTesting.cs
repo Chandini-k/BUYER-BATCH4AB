@@ -12,15 +12,15 @@ namespace ItemServiceTesting
 {
     [TestFixture]
     public class ItemControllerTesting
-    {
-        ItemsController itemsController;
-        private Mock<IItemManager> mockItemManager;
+    {ItemController itemsController;
+        private Mock<IManager> mockItemManager;
 
         [SetUp]
         public void SetUp()
         {
-            mockItemManager = new Mock<IItemManager>();
-            itemsController = new ItemsController(mockItemManager.Object);
+
+            mockItemManager = new Mock<IManager>();
+            itemsController = new ItemController(mockItemManager.Object);
         }
         [TearDown]
         public void TearDown()
@@ -38,7 +38,7 @@ namespace ItemServiceTesting
         {
             try
             {
-                var cart = new AddCart { cartId = cartId, buyerId = buyerId, itemId = itemid, price = price, itemName = itemName, description = description, stockno = stockno, remarks = remarks, imageName = imageName };
+                var cart = new Addcart { cartId = cartId, buyerId = buyerId, itemId = itemid, price = price, itemName = itemName, description = description, stockno = stockno, remarks = remarks, imageName = imageName };
                 mockItemManager.Setup(x => x.AddToCart(cart)).ReturnsAsync(true);
                 var result = await itemsController.AddToCart(cart);
                 Assert.NotNull(result);
@@ -60,7 +60,7 @@ namespace ItemServiceTesting
             try
             {
                 DateTime dateTime = System.DateTime.Now;
-                var purchaseHistory = new PurchaseHistory { purchaseId = purchaseId, buyerId = buyerId, itemId = itemId, transactionType = transactionType, noOfItems = noofitems, remarks = remarks, transactionStatus = transactionStatus, dateTime = dateTime };
+                var purchaseHistory = new purchasehistory { purchaseId = purchaseId, buyerId = buyerId, itemId = itemId, transactionType = transactionType, noOfItems = noofitems, remarks = remarks, transactionStatus = transactionStatus, dateTime = dateTime };
                 mockItemManager.Setup(x => x.BuyItem(purchaseHistory)).ReturnsAsync(true);
                 var result = await itemsController.BuyItem(purchaseHistory);
                 Assert.NotNull(result);
@@ -83,9 +83,8 @@ namespace ItemServiceTesting
         {
             try
             {
-                mockItemManager.Setup(x => x.CheckCartItem(buyerid, itemid)).ReturnsAsync(true);
-                var result = await itemsController.CheckCartItem(buyerid, itemid);
-                Assert.That(result,Is.True);
+                var result = await itemsController.CheckCartItem(buyerid, itemid) as OkObjectResult;
+                Assert.AreEqual(200,result.StatusCode);
             }
             catch (Exception e)
             {
@@ -99,9 +98,8 @@ namespace ItemServiceTesting
         {
             try
             {
-                mockItemManager.Setup(x => x.CheckCartItem(buyerid, itemid)).ReturnsAsync(false);
-                var result = await itemsController.CheckCartItem(buyerid, itemid);
-                Assert.That(result,Is.False);
+                var result = await itemsController.CheckCartItem(buyerid, itemid) as NoContentResult;
+                Assert.AreEqual(204,result.StatusCode);
             }
             catch (Exception e)
             {
@@ -114,35 +112,33 @@ namespace ItemServiceTesting
         /// <param name="cartId"></param>
         /// <returns></returns>
         [Test]
-        [TestCase(123)]
+        [TestCase(122)]
         [Description("Delete cart Successful")]
         public async Task DeleteCart_Sucessfull(int cartId)
         {
             try
             {
-                mockItemManager.Setup(x => x.DeleteCart(cartId)).ReturnsAsync(true);
-                var result = await itemsController.DeleteCart(cartId);
-                Assert.That(result,Is.True);
+                var result = await itemsController.DeleteCart(cartId) as OkObjectResult;
+                Assert.AreEqual(200,result.StatusCode);
             }
             catch (Exception e)
             {
-                Assert.Fail(e.Message);
+                Assert.Fail(e.InnerException.Message);
             }
         }
         [Test]
-        [TestCase(12)]
+        [TestCase(131)]
         [Description("Delete cart Unsucessful")]
         public async Task DeleteCart_UnSucessfull(int cartId)
         {
             try
             {
-                mockItemManager.Setup(x => x.DeleteCart(cartId)).ReturnsAsync(false);
-                var result = await itemsController.DeleteCart(cartId);
-                Assert.That(result,Is.False);
+                var result = await itemsController.DeleteCart(cartId) as NotFoundResult;
+                Assert.AreEqual(404,result.StatusCode);
             }
             catch (Exception e)
             {
-                Assert.Fail(e.Message);
+                Assert.Fail(e.InnerException.Message);
             }
         }
         /// <summary>
@@ -151,16 +147,14 @@ namespace ItemServiceTesting
         /// <param name="cartId"></param>
         /// <returns></returns>
         [Test]
-        [TestCase(123)]
+        [TestCase(1235)]
         [Description("testing cart item")]
         public async Task GetCart_Successfull(int cartId)
         {
             try
             {
-                AddCart cart = new AddCart();
-                mockItemManager.Setup(x => x.GetCartItem(cartId)).ReturnsAsync(cart);
-                var result = await itemsController.GetCartItem(cartId);
-                Assert.NotNull(result);
+                var result = await itemsController.GetCartItem(cartId) as OkObjectResult;
+                Assert.IsNotNull(result);
             }
             catch (Exception e)
             {
@@ -174,9 +168,8 @@ namespace ItemServiceTesting
         {
             try
             {
-                mockItemManager.Setup(x => x.GetCartItem(cartId));
-                var result = await itemsController.GetCartItem(cartId);
-                Assert.IsNull(result, "Not found");
+                var result = await itemsController.GetCartItem(cartId) as NoContentResult;
+                Assert.AreEqual(204,result.StatusCode);
             }
             catch (Exception e)
             {
@@ -195,9 +188,7 @@ namespace ItemServiceTesting
         {
             try
             {
-                List<AddCart> cart = new List<AddCart>();
-                mockItemManager.Setup(x => x.GetCarts(buyerId)).ReturnsAsync(cart);
-                var result = await itemsController.GetCart(buyerId);
+                 var result = await itemsController.GetCart(buyerId) as OkObjectResult;
                 Assert.NotNull(result);
             }
             catch (Exception e)
@@ -206,16 +197,14 @@ namespace ItemServiceTesting
             }
         }
         [Test]
-        [TestCase(1234)]
+        [TestCase(12)]
         [Description("testing buyer cart item")]
         public async Task GetBuyerCart_UnSuccessfull(int buyerId)
         {
             try
             {
-                List<AddCart> cart = new List<AddCart>();
-                mockItemManager.Setup(x => x.GetCarts(buyerId)).ReturnsAsync(cart);
-                var result = await itemsController.GetCart(buyerId);
-                Assert.That(result,Is.Empty);
+                var result = await itemsController.GetCart(buyerId) as NotFoundResult;
+                Assert.AreEqual(404,result.StatusCode);
             }
             catch (Exception e)
             {
@@ -234,9 +223,8 @@ namespace ItemServiceTesting
         {
             try
             {
-                mockItemManager.Setup(x => x.GetCount(buyerId)).ReturnsAsync(1);
-                var result = await itemsController.GetCount(buyerId);
-                Assert.That(result,Is.Not.Zero);
+                var result = await itemsController.GetCount(buyerId) as OkObjectResult;
+                Assert.AreEqual(200,result.StatusCode);
             }
             catch (Exception e)
             {
@@ -244,15 +232,14 @@ namespace ItemServiceTesting
             }
         }
         [Test]
-        [TestCase(1234)]
+        [TestCase(1453)]
         [Description("testing buyer cart item")]
         public async Task GetCartCount_UnSuccessfull(int buyerId)
         {
             try
             {
-                mockItemManager.Setup(x => x.GetCount(buyerId));
-                var result = await itemsController.GetCount(buyerId);
-                Assert.That(result,Is.Zero);
+                var result = await itemsController.GetCount(buyerId) as NoContentResult;
+                Assert.IsNull(result);
             }
             catch (Exception e)
             {
@@ -272,8 +259,6 @@ namespace ItemServiceTesting
         {
             try
             {
-                List<Product> products = new List<Product>();
-                mockItemManager.Setup(x => x.Items(price, price1)).ReturnsAsync(products);
                 var result = await itemsController.Sort(price, price1);
                 Assert.NotNull(result);
             }
@@ -294,9 +279,7 @@ namespace ItemServiceTesting
         {
             try
             {
-                List<PurchaseHistory> products = new List<PurchaseHistory>();
-                mockItemManager.Setup(x => x.Purchase(buyerId)).ReturnsAsync(products);
-                var result = await itemsController.Purchase(buyerId);
+                var result = await itemsController.Purchase(buyerId) as OkObjectResult;
                 Assert.IsNotNull(result);
             }
             catch (Exception e)
@@ -311,10 +294,8 @@ namespace ItemServiceTesting
         {
             try
             {
-                List<PurchaseHistory> products = new List<PurchaseHistory>();
-                mockItemManager.Setup(x => x.Purchase(buyerId)).ReturnsAsync(products);
-                var result = await itemsController.Purchase(buyerId);
-                Assert.That(result,Is.Empty);
+                var result = await itemsController.Purchase(buyerId) as NoContentResult;
+                Assert.AreEqual(204,result.StatusCode);
             }
             catch (Exception e)
             {
@@ -333,9 +314,7 @@ namespace ItemServiceTesting
         {
             try
             {
-                List<Product> products = new List<Product>();
-                mockItemManager.Setup(x => x.Search(itemName)).ReturnsAsync(products);
-                var result = await itemsController.SearchItem(itemName);
+                var result = await itemsController.SearchItem(itemName) as OkObjectResult;
                 Assert.NotNull(result);
             }
             catch (Exception e)
@@ -350,10 +329,8 @@ namespace ItemServiceTesting
         {
             try
             {
-                List<Product> products = new List<Product>();
-                mockItemManager.Setup(x => x.Search(itemName)).ReturnsAsync(products);
-                var result = await itemsController.SearchItem(itemName);
-                Assert.That(result,Is.Null);
+                var result = await itemsController.SearchItem(itemName) as NotFoundResult;
+                Assert.AreEqual(404,result.StatusCode);
             }
             catch (Exception e)
             {

@@ -29,7 +29,9 @@ namespace BuyerService.Controllers
         [Route("EditProfile")]
         public async Task<IActionResult> EditBuyerProfile(BuyerData buyer)
         {
-            return Ok(await _iBuyerManager.EditBuyerProfile(buyer));
+		bool check=await _iBuyerManager.EditBuyerProfile(buyer);
+		if(check==true){return Ok();}
+		else{return NoContent();}
 
         }
         /// <summary>
@@ -44,7 +46,7 @@ namespace BuyerService.Controllers
         {
             BuyerData buyer = await _iBuyerManager.GetBuyerProfile(bid);
             if (buyer == null)
-                return Ok("Invalid User");
+                return NotFound();
             else
             {
                 return Ok(buyer);
