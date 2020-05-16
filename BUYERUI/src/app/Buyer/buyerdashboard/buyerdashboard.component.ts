@@ -13,7 +13,8 @@ export class BuyerdashboardComponent implements OnInit {
     constructor(private route:Router,private service:ItemsService) {
       if(localStorage.getItem('Buyerid'))
       {
-        let bid=Number(localStorage.getItem('buyerid'));
+        this.username=localStorage.getItem('username');
+        let bid=Number(localStorage.getItem('Buyerid'));
         this.service.GetCount(bid).subscribe(res=>{
           this.count=res;
           console.log(this.count);
@@ -29,6 +30,7 @@ export class BuyerdashboardComponent implements OnInit {
   ngOnInit() {
   }
   Logout(){
+    localStorage.clear();
     this.route.navigateByUrl('home');
   }
 }

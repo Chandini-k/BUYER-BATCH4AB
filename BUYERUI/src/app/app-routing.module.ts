@@ -19,7 +19,7 @@ const routes: Routes = [
         {path:'purchasehistory',component:PurchasehistoryComponent},
         {path:'viewprofile',component:ViewprofileComponent},
         {path:'buyitem',component:BuyitemComponent}]},
-      {path:'',component:HomeComponent}
+      {path:'', redirectTo:'home',pathMatch:'full'}
 
 ];
 

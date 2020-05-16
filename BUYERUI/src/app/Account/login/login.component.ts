@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
         this.buyer=new Buyer();
         let username=this.userForm.value['username']
         let password=this.userForm.value['password']
+
       this.service.BuyerLogin(username,password).subscribe(res=>{this.token=res,console.log(this.token)
         if(this.token.message=="Success")
             {
@@ -41,6 +42,7 @@ export class LoginComponent implements OnInit {
        console.log(this.token)
           localStorage.setItem("token",this.token.token);
           localStorage.setItem("Buyerid",this.token.buyerid.toString());
+          localStorage.setItem("username",this.token.username);
           this.route.navigateByUrl('/buyer')
             }
             else{
