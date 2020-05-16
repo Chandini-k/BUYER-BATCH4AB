@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "GkKMIl7sEazTsmxJMjUwrrPQe3oZkaaXp5MiYrVt1ljDb8991GzdAkmkp5tUPd1uo6788YY4+iAQVsf/Tek8vA==",
+  "dgSpecHash": "wkZxkzjp2maPrawi3do4R64d7TTO2sO/A6zvFJTLRIXtJXJDYb0pfaDIANx8dPN9z4xWQ8G5VH35INVwgHPcDA==",
   "success": true,
-  "projectFilePath": "C:\\BUYERPROJECT\\ItemsService\\ItemsService\\ItemsService.csproj",
+  "projectFilePath": "C:\\Users\\Administrator\\Pictures\\BUYERPROJECT\\ItemsService\\ItemsService\\ItemsService.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.aspnetcore.antiforgery\\2.2.0\\microsoft.aspnetcore.antiforgery.2.2.0.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",

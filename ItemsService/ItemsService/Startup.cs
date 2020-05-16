@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System;
 
 namespace ItemsService
 {
@@ -39,7 +40,24 @@ namespace ItemsService
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "BIG BASKET", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "BIG BASKET",
+                    Description = "Provides service to Buyer",
+                    TermsOfService = new Uri("https://buyer.com/terms"),
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Team 4AB",
+                        Email = string.Empty,
+                        Url = new Uri("https://buyer.com/spboyer"),
+                    },
+                    License = new OpenApiLicense
+                    {
+                        Name = "Use under LICX",
+                        Url = new Uri("https://buyer.com/license"),
+                    }
+                });
             });
             services.AddMvc(
                 config => {

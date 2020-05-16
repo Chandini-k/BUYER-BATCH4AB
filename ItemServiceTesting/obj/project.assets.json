@@ -10094,11 +10094,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\BUYERPROJECT\\ItemServiceTesting\\ItemServiceTesting.csproj",
+      "projectUniqueName": "C:\\Users\\Administrator\\Pictures\\BUYERPROJECT\\ItemServiceTesting\\ItemServiceTesting.csproj",
       "projectName": "ItemServiceTesting",
-      "projectPath": "C:\\BUYERPROJECT\\ItemServiceTesting\\ItemServiceTesting.csproj",
+      "projectPath": "C:\\Users\\Administrator\\Pictures\\BUYERPROJECT\\ItemServiceTesting\\ItemServiceTesting.csproj",
       "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-      "outputPath": "C:\\BUYERPROJECT\\ItemServiceTesting\\obj\\",
+      "outputPath": "C:\\Users\\Administrator\\Pictures\\BUYERPROJECT\\ItemServiceTesting\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -10119,11 +10119,11 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\BUYERPROJECT\\BUYERDBENTITY\\BUYERDBENTITY.csproj": {
-              "projectPath": "C:\\BUYERPROJECT\\BUYERDBENTITY\\BUYERDBENTITY.csproj"
+            "C:\\Users\\Administrator\\Pictures\\BUYERPROJECT\\BUYERDBENTITY\\BUYERDBENTITY.csproj": {
+              "projectPath": "C:\\Users\\Administrator\\Pictures\\BUYERPROJECT\\BUYERDBENTITY\\BUYERDBENTITY.csproj"
             },
-            "C:\\BUYERPROJECT\\ItemsService\\ItemsService\\ItemsService.csproj": {
-              "projectPath": "C:\\BUYERPROJECT\\ItemsService\\ItemsService\\ItemsService.csproj"
+            "C:\\Users\\Administrator\\Pictures\\BUYERPROJECT\\ItemsService\\ItemsService\\ItemsService.csproj": {
+              "projectPath": "C:\\Users\\Administrator\\Pictures\\BUYERPROJECT\\ItemsService\\ItemsService\\ItemsService.csproj"
             }
           }
         }
