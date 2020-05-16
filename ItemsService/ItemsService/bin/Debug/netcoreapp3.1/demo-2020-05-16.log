@@ -1,0 +1,2 @@
+2020-05-16 16:19:48.9796||DEBUG|ItemsService.Program|init main function 
+2020-05-16 16:20:03.2206|3|WARN|Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware|Failed to determine the https port for redirect. 
